@@ -16,11 +16,6 @@ type LedgerSnapshotChapter = {
 
 const snapshotChapters = ledgerBundle.chapters as LedgerSnapshotChapter[];
 
-function wordCount(text: string): number {
-  const trimmed = text.trim();
-  return trimmed ? trimmed.split(/\\s+/).length : 0;
-}
-
 function toChapterDraft(source: LedgerSnapshotChapter): ChapterDraft {
   const timestamp = Date.parse(source.updatedAt) || Date.now();
   const sourceIdentifier = `${source.sourceRepository}:${source.sourcePath}#${source.sourceBlobSha}`;
