@@ -50,6 +50,8 @@ function toChapterDraft(source: LedgerSnapshotChapter): ChapterDraft {
   };
 }
 
+export const INITIAL_LEDGER_CHAPTER_DRAFTS: ChapterDraft[] = snapshotChapters.map(toChapterDraft);
+
 /**
  * Merge the bundled Ledger chapter snapshot into a Writer workspace without
  * overwriting existing user drafts or creating duplicate copies on re-import.
@@ -82,12 +84,9 @@ export function importLedgerChapterSnapshot(state: WorkspaceState): WorkspaceSta
     };
   }
 
-  const imported = snapshotChapters
-    .filter((source) => {
-      const sourceIdentifier = `${source.sourceRepository}:${source.sourcePath}#${source.sourceBlobSha}`;
-      return !existingSourceIds.has(sourceIdentifier);
-    })
-    .map(toChapterDraft);
+  const imported = INITIAL_LEDGER_CHAPTER_DRAFTS.filter(
+    (chapter) => !existingSourceIds.has(chapter.sourceIdentifier || '')
+  );
 
   const chapters = [...imported, ...existing];
   const firstCanonical = chapters.find((chapter) => chapter.provenance === 'ledger_authoritative');
