@@ -106,7 +106,7 @@ export function importLedgerChapterSnapshot(state: WorkspaceState): WorkspaceSta
     ledgerConnection: {
       ...state.ledgerConnection,
       status: 'unconnected_standalone',
-      lastSynced: Date.now(),
+      lastSynced: undefined,
     },
   };
 }
