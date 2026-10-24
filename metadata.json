@@ -1,0 +1,6 @@
+{
+  "name": "Apocrypha DXD: ForeverWorlds — Writer App",
+  "description": "Specialized multi-model writing and literary-analysis environment for Apocrypha DXD: ForeverWorlds, supporting Technique Packs, narrative causality analysis, and operational tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
