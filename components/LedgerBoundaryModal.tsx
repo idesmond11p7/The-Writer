@@ -162,18 +162,18 @@ export default function LedgerBoundaryModal({
               <span>Reset Workspace to Seed Data</span>
             </div>
             <p className="text-[11px] text-stone-400 font-sans leading-relaxed">
-              Resets all chapters, Technique Packs, analyses, and execution logs to the verified canonical seed state for Apocrypha DXD: ForeverWorlds.
+              Resets the workspace to its bundled baseline. Chapter text comes from the Ledger snapshot, but the starter Technique Pack has not yet been verified against the chapters. Unsaved drafts and workspace records will be replaced.
             </p>
             <button
               onClick={() => {
-                if (confirm('Reset entire workspace to canonical seed data? Unsaved custom drafts will be replaced.')) {
+                if (confirm('Reset the workspace to the bundled baseline? Unsaved custom drafts and workspace records will be replaced.')) {
                   onResetToSeed();
                   onClose();
                 }
               }}
               className="mt-1 px-3 py-1.5 bg-red-900/40 hover:bg-red-800/60 border border-red-800 text-red-200 rounded text-xs"
             >
-              Reset to Canonical Seed
+              Reset to Bundled Baseline
             </button>
           </div>
         </div>
