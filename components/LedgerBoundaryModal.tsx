@@ -3,8 +3,10 @@
 import React, { useRef } from 'react';
 import { WorkspaceState } from '@/types/domain';
 import { exportWorkspaceToJson, resetWorkspaceToSeed } from '@/lib/storage';
+import { importLedgerChapterSnapshot } from '@/lib/ledgerChapterImport';
 import { 
   Database, 
+  BookOpen,
   Download, 
   Upload, 
   RefreshCw, 
@@ -122,6 +124,35 @@ export default function LedgerBoundaryModal({
               accept=".json"
               className="hidden"
             />
+          </div>
+
+          {/* Canonical Ledger Snapshot Import */}
+          <div className="p-4 border border-emerald-950/80 bg-emerald-950/10 rounded space-y-2">
+            <div className="flex items-center gap-2 text-emerald-300 font-semibold">
+              <BookOpen className="w-4 h-4" />
+              <span>Canonical Chapter Snapshot</span>
+            </div>
+            <p className="text-[11px] text-stone-300 font-sans leading-relaxed">
+              Import the eight chapter records currently present in the bundled Ledger snapshot. Chapter text is preserved with source paths and blob hashes. Existing drafts are not overwritten; the generated Writer seed example is quarantined as non-canon.
+            </p>
+            <p className="text-[10px] text-amber-300">
+              Chapter 9 is not present in the current Ledger snapshot. This import does not create one.
+            </p>
+            <button
+              onClick={() => {
+                const nextState = importLedgerChapterSnapshot(state);
+                const added = nextState.chapters.length - state.chapters.length;
+                onStateImported(nextState);
+                alert(
+                  added > 0
+                    ? `Imported ${added} chapter record(s) from the Ledger snapshot. No existing draft text was overwritten.`
+                    : 'No new chapter records were added. The bundled Ledger snapshot is already imported.'
+                );
+              }}
+              className="mt-1 px-3 py-2 bg-emerald-900/30 hover:bg-emerald-900/50 border border-emerald-800 text-emerald-100 rounded text-xs"
+            >
+              Import 8 Ledger Chapters
+            </button>
           </div>
 
           {/* Reset Workspace */}
