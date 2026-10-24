@@ -1,4 +1,5 @@
 import { WorkspaceState, TechniquePack, ChapterDraft, SchemeOfWork, ChapterAnalysis, AIExecutionLog } from '@/types/domain';
+import { INITIAL_LEDGER_CHAPTER_DRAFTS } from '@/lib/ledgerChapterImport';
 
 // Deterministic fixed base timestamp for SSR and hydration consistency
 export const BASE_TIMESTAMP = 1774180800000;
@@ -200,61 +201,7 @@ export const INITIAL_TECHNIQUE_PACKS: TechniquePack[] = [
   },
 ];
 
-export const INITIAL_CHAPTERS: ChapterDraft[] = [
-  {
-    id: 'chap_dxd_01',
-    title: 'Chapter 1: The Boundary Fracture at Kuoh',
-    chapterNumber: '1',
-    provenance: 'local_working_draft',
-    sourceIdentifier: 'LEDGER-REF-DXD-FW-001 (Pending Sync)',
-    targetPlanId: 'sow_act_1_perimeter',
-    activeTechniquePackIds: ['pack_psy_foreshadowing_01'],
-    writingObjectives: [
-      'Establish Issei Hyoudou\'s baseline mundane existence prior to Raynare\'s approach.',
-      'Deploy Recursive Psychological Foreshadowing through sensory latency and metallic air.',
-      'Depict the first subtle glitch in the Kuoh town perimeter without revealing demonic factions.',
-    ],
-    constraints: [
-      'Strict third-person limited focalization.',
-      'No overt supernatural exposition in the opening 1,000 words.',
-      'Retain continuity with the Ur-Verse timeline fracture milestone.',
-    ],
-    notes: 'Draft revision working towards final handoff to the Ledger archive once approved by Project Coordinator.',
-    currentContent: `The sodium lights along the Kuoh drainage canal never illuminated the water so much as they stained it.
-
-Issei Hyoudou paused at the crest of the concrete embankment, his bicycle chain rattling with the loose, dry chatter of neglected grease. It was twenty past seven. The dusk had that sticky, late-spring thickness that made shirts adhere to shoulder blades, but as he reached down to adjust the strap of his school bag, his fingertips brushed the cold steel handlebar and found it dry as powdered bone.
-
-Not damp. The humidity was ninety percent, yet the handlebar felt desiccated.
-
-He rubbed his thumb against his forefinger. On the back of his tongue sat the dull, alkaline tang of an old copper coin held too long in a closed fist. 
-
-He hadn't chewed copper. He had eaten lukewarm pork cutlet twenty minutes ago at the diner by the station with Matsuda and Motohama, listening to them argue over volleyball rankings with the single-minded fervor that usually shielded him from thinking about anything else.
-
-He looked down into the canal.
-
-The water moved, but the reflection of the concrete pillar below him was late. It hesitated by a quarter of a heartbeat, lagging behind the current like heavy oil, before catching up in a greasy shudder.
-
-Issei blinked once, hard. A muscle at the base of his skull tightened, pulling his chin an inch downward in an involuntary twitch.
-
-"Just tired," he muttered, though his voice sounded thin, swallowed instantly by the concrete underpass. "Staring at kanji too long."
-
-He kicked the pedal forward. The bicycle rolled down the incline, but as the wheels hit the shadowed asphalt under the bridge, the silence didn't sound like evening quiet. It sounded like air being evacuated from an open jar.`,
-    revisions: [
-      {
-        id: 'rev_dxd_01_initial',
-        timestamp: BASE_TIMESTAMP - 86400000 * 2,
-        author: 'user',
-        notes: 'Initial scene opening draft exploring canal atmosphere.',
-        content: `The sodium lights along the Kuoh drainage canal never illuminated the water so much as they stained it.\n\nIssei Hyoudou paused at the crest of the concrete embankment, his bicycle chain rattling with the loose, dry chatter of neglected grease...`,
-        wordCount: 312,
-        techniquePackIds: ['pack_psy_foreshadowing_01'],
-      },
-    ],
-    createdAt: BASE_TIMESTAMP - 86400000 * 3,
-    updatedAt: BASE_TIMESTAMP - 3600000 * 4,
-    lastAnalysisTimestamp: BASE_TIMESTAMP - 3600000 * 2,
-  },
-];
+export const INITIAL_CHAPTERS: ChapterDraft[] = INITIAL_LEDGER_CHAPTER_DRAFTS;
 
 export const INITIAL_SCHEMES_OF_WORK: SchemeOfWork[] = [
   {
@@ -443,11 +390,11 @@ export const INITIAL_WORKSPACE_STATE: WorkspaceState = {
   lastSavedAt: BASE_TIMESTAMP,
   chapters: INITIAL_CHAPTERS,
   techniquePacks: INITIAL_TECHNIQUE_PACKS,
-  schemesOfWork: INITIAL_SCHEMES_OF_WORK,
-  analyses: INITIAL_ANALYSES,
+  schemesOfWork: [],
+  analyses: [],
   evaluations: [],
-  executionLogs: INITIAL_EXECUTION_LOGS,
-  activeChapterId: 'chap_dxd_01',
+  executionLogs: [],
+  activeChapterId: 'ledger_chapter_01_7720d50',
   ledgerConnection: {
     status: 'unconnected_standalone',
     endpointUrl: 'https://ledger.ur-verse.internal/api/v1',
