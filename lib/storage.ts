@@ -30,7 +30,9 @@ function migrateWorkspaceState(parsed: Partial<WorkspaceState>): WorkspaceState 
   const existingPacks = (parsed.techniquePacks || []).filter(
     (pack) => !legacySeedTechniquePackIds.has(pack.id)
   );
-  const existingPacksById = new Map(existingPacks.map((pack) => [pack.id, pack]));
+  const existingPacksById = new Map<string, (typeof existingPacks)[number]>(
+    existingPacks.map((pack) => [pack.id, pack] as const)
+  );
   const canonicalPacks = INITIAL_WORKSPACE_STATE.techniquePacks;
   const mergedPacks = canonicalPacks.map((sourcePack) => {
     const existing = existingPacksById.get(sourcePack.id);
