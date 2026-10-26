@@ -1,29 +1,19 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { 
-  SchemeOfWork, 
-  PlanMilestone, 
-  ChapterDraft 
-} from '@/types/domain';
+import { SchemeOfWork, PlanMilestone, ChapterDraft } from '@/types/domain';
 import { generateTimestamp, generateId } from '@/lib/utils';
-import { 
-  Compass, 
-  Plus, 
-  Target, 
-  AlertTriangle, 
-  CheckCircle2, 
-  FileText, 
-  Users, 
-  Clock, 
-  ExternalLink,
-  ChevronRight,
-  BookOpen,
+import {
+  Compass,
+  Plus,
+  AlertTriangle,
+  CheckCircle2,
+  Users,
   ArrowRight,
   ShieldAlert,
   Upload,
   X,
-  GitFork
+  GitFork,
 } from 'lucide-react';
 
 interface ProjectPlanningProps {
@@ -41,42 +31,67 @@ export default function ProjectPlanning({
   onCreateScheme,
   onNavigateToChapter,
 }: ProjectPlanningProps) {
-  const [selectedSchemeId, setSelectedSchemeId] = useState<string>(schemesOfWork[0]?.id || '');
-  const [activeTab, setActiveTab] = useState<'milestones' | 'graph' | 'discrepancies' | 'characters'>('milestones');
+  const [selectedSchemeId, setSelectedSchemeId] = useState<string>(
+    schemesOfWork[0]?.id || ''
+  );
+  const [activeTab, setActiveTab] = useState<
+    'graph' | 'milestones' | 'discrepancies' | 'characters'
+  >('graph');
   const [isImportModalOpen, setIsImportModalOpen] = useState<boolean>(false);
   const [importTitle, setImportTitle] = useState<string>('');
   const [importScope, setImportScope] = useState<string>('');
-  const [importProvenance, setImportProvenance] = useState<string>('Legacy Outline (Pre-App Archive)');
+  const [importProvenance, setImportProvenance] = useState<string>(
+    'Author Arc Architecture'
+  );
   const [importOverview, setImportOverview] = useState<string>('');
   const [importEventsRaw, setImportEventsRaw] = useState<string>('');
 
+  // Inline Discrepancy Form State (replaces window.prompt)
+  const [isNewDiscOpen, setIsNewDiscOpen] = useState<boolean>(false);
+  const [newDiscChapterId, setNewDiscChapterId] = useState<string>(
+    chapters[7]?.id || chapters[0]?.id || ''
+  );
+  const [newDiscDesc, setNewDiscDesc] = useState<string>('');
+  const [newDiscAction, setNewDiscAction] = useState<string>('');
+
   const activeScheme = useMemo(() => {
-    return schemesOfWork.find((s) => s.id === selectedSchemeId) || schemesOfWork[0] || null;
+    return (
+      schemesOfWork.find((s) => s.id === selectedSchemeId) ||
+      schemesOfWork[0] ||
+      null
+    );
   }, [schemesOfWork, selectedSchemeId]);
 
   const handleImportPlanSubmit = () => {
-    if (!importTitle.trim()) {
-      alert('Please provide a title for the imported plan.');
-      return;
-    }
-
+    if (!importTitle.trim()) return;
     const newId = generateId('sow_imported');
     const now = generateTimestamp();
-    const eventLines = importEventsRaw.split('\n').map((l) => l.trim()).filter(Boolean);
+    const eventLines = importEventsRaw
+      .split('\n')
+      .map((l) => l.trim())
+      .filter(Boolean);
 
     const newScheme: SchemeOfWork = {
       id: newId,
-      title: importTitle,
+      title: importTitle.trim(),
       scope: importScope || 'Imported Arc Plan',
       originalSource: importProvenance || 'External Plan Document',
-      overview: importOverview || 'Imported planning document preserving original structure and provenance.',
-      charactersInvolved: ['Issei Hyoudou', 'Raynare', 'Rias Gremory'],
+      overview:
+        importOverview ||
+        'Imported planning document preserving original structure and provenance.',
+      charactersInvolved: [
+        'Ira Lowe (Jonah Laurence)',
+        'Violet-Eyed Student Council Figure',
+      ],
       milestones: [
         {
           id: generateId('m_imp'),
           title: 'Imported Intended Milestones',
-          targetChapterNumber: 1,
-          intendedEvents: eventLines.length > 0 ? eventLines : ['Initial imported event sequence'],
+          targetChapterNumber: chapters.length + 1,
+          intendedEvents:
+            eventLines.length > 0
+              ? eventLines
+              : ['Initial imported event sequence'],
           characterBeats: ['Preserve character intention from source plan'],
           thematicGoals: ['Preserve original thematic scope'],
           status: 'planned',
@@ -96,25 +111,36 @@ export default function ProjectPlanning({
     setImportEventsRaw('');
   };
 
-  // Create new Scheme of Work
   const handleCreateScheme = () => {
     const newId = generateId('sow_user');
     const now = generateTimestamp();
     const newScheme: SchemeOfWork = {
       id: newId,
-      title: 'New Scheme of Work / Act Outline',
-      scope: 'Arc or Act Scope Definition',
-      originalSource: 'Imported from Author Outline / Workstream Notes',
-      overview: 'Summary of the thematic trajectory, intended narrative arcs, and critical milestones.',
-      charactersInvolved: ['Issei Hyoudou', 'Raynare'],
+      title: 'Act II: The Minami-Kuoh Dossier Investigation (Ch. 9+)',
+      scope: 'Chapters 9 to 14 — Post-Exam Investigation Arc',
+      originalSource: 'Writer Studio Forward Planning',
+      overview:
+        'Following the discovery of the Kanagawa Prefectural Educational Development Association address in Chapter 8, Ira verifies the directory listing at the municipal library and travels to the Minami-Kuoh annex while awaiting Friday’s registered-post examination results from Kuoh Academy.',
+      charactersInvolved: [
+        'Ira Lowe (Jonah Laurence)',
+        'Violet-Eyed Student Council Figure (Kuoh)',
+        'Minami-Kuoh Annex Personnel',
+      ],
       milestones: [
         {
           id: generateId('m'),
-          title: 'Opening Inciting Breach',
-          targetChapterNumber: 1,
-          intendedEvents: ['Initial anomalous disturbance', 'Encounter at the perimeter'],
-          characterBeats: ['Sensory disorientation', 'Reluctance to accept reality shift'],
-          thematicGoals: ['Mundane vulnerability before the supernatural'],
+          title: 'M9: Public Library Directory Verification & Route Planning',
+          targetChapterNumber: 9,
+          intendedEvents: [
+            'Ira visits the local library to check the telephone directory for the Kanagawa Prefectural Educational Development Association',
+            'Maps the bus/train route to the Minami-Kuoh administrative annex',
+          ],
+          characterBeats: [
+            'Disciplined adherence to empirical verification rather than conversational guessing',
+          ],
+          thematicGoals: [
+            'Investigate the machinery that constructed the life of "Ira Lowe"',
+          ],
           status: 'planned',
         },
       ],
@@ -126,44 +152,50 @@ export default function ProjectPlanning({
     setSelectedSchemeId(newId);
   };
 
-  // Add milestone
   const handleAddMilestone = () => {
     if (!activeScheme) return;
+    const prevMilestone =
+      activeScheme.milestones[activeScheme.milestones.length - 1];
     const newMilestone: PlanMilestone = {
       id: generateId('m'),
-      title: 'New Planned Milestone',
+      title: `M${activeScheme.milestones.length + 1}: New Planned Milestone`,
       targetChapterNumber: activeScheme.milestones.length + 1,
-      intendedEvents: ['Event A', 'Event B'],
-      characterBeats: ['Character shift'],
-      thematicGoals: ['Thematic resonance'],
+      intendedEvents: [
+        'Primary narrative action beat',
+        'Secondary investigative discovery',
+      ],
+      characterBeats: ['Epistemic or psychological shift'],
+      thematicGoals: ['Core thematic development'],
       status: 'planned',
+      dependsOnMilestoneIds: prevMilestone ? [prevMilestone.id] : [],
     };
-    const updated = {
+    onUpdateScheme({
       ...activeScheme,
       milestones: [...activeScheme.milestones, newMilestone],
       updatedAt: generateTimestamp(),
-    };
-    onUpdateScheme(updated);
+    });
   };
 
-  // Add Discrepancy
-  const handleAddDiscrepancy = (chapterId: string, desc: string, action: string) => {
-    if (!activeScheme) return;
+  const handleAddDiscrepancySubmit = () => {
+    if (!activeScheme || !newDiscDesc.trim()) return;
     const newDisc = {
-      chapterId,
-      description: desc,
-      actionRequired: action,
+      chapterId: newDiscChapterId,
+      description: newDiscDesc.trim(),
+      actionRequired:
+        newDiscAction.trim() ||
+        'Preserve canonical Ledger text and document divergence in plan.',
       resolved: false,
     };
-    const updated = {
+    onUpdateScheme({
       ...activeScheme,
       discrepancies: [...activeScheme.discrepancies, newDisc],
       updatedAt: generateTimestamp(),
-    };
-    onUpdateScheme(updated);
+    });
+    setNewDiscDesc('');
+    setNewDiscAction('');
+    setIsNewDiscOpen(false);
   };
 
-  // Toggle Discrepancy Resolution
   const handleToggleDiscrepancy = (idx: number) => {
     if (!activeScheme) return;
     const updatedDiscs = [...activeScheme.discrepancies];
@@ -176,33 +208,33 @@ export default function ProjectPlanning({
   };
 
   return (
-    <div className="flex h-full w-full overflow-hidden">
-      {/* Plans Sidebar */}
-      <div className="w-80 border-r border-stone-800 bg-stone-950 flex flex-col flex-shrink-0">
-        <div className="p-4 border-b border-stone-800 flex items-center justify-between">
-          <div className="text-xs font-mono uppercase tracking-wider text-stone-400 flex items-center gap-1.5">
+    <div className="flex h-full w-full overflow-hidden bg-[#09090b]">
+      {/* Left Sidebar: Schemes of Work */}
+      <div className="w-80 border-r border-stone-800/80 bg-[#0c0c0e] flex flex-col flex-shrink-0">
+        <div className="p-4 border-b border-stone-800/80 flex items-center justify-between">
+          <div className="text-xs font-mono uppercase tracking-wider text-stone-300 flex items-center gap-1.5">
             <Compass className="w-4 h-4 text-amber-500" />
             <span>Schemes of Work</span>
           </div>
           <div className="flex items-center gap-1">
             <button
               onClick={() => setIsImportModalOpen(true)}
-              className="p-1 hover:bg-stone-800 rounded text-stone-400 hover:text-stone-200 transition-colors"
-              title="Import Existing Plan Document"
+              className="p-1 hover:bg-stone-800 rounded text-stone-400 hover:text-stone-200"
+              title="Import Plan Document"
             >
               <Upload className="w-4 h-4" />
             </button>
             <button
               onClick={handleCreateScheme}
-              className="p-1 hover:bg-stone-800 rounded text-stone-400 hover:text-stone-200 transition-colors"
-              title="Create Scheme of Work"
+              className="p-1 hover:bg-stone-800 rounded text-stone-400 hover:text-stone-200"
+              title="Create Act II Scheme of Work"
             >
               <Plus className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-2 space-y-1.5">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {schemesOfWork.map((s) => {
             const isSelected = s.id === activeScheme?.id;
             const openDiscs = s.discrepancies.filter((d) => !d.resolved).length;
@@ -210,19 +242,23 @@ export default function ProjectPlanning({
               <div
                 key={s.id}
                 onClick={() => setSelectedSchemeId(s.id)}
-                className={`p-3 rounded border text-left cursor-pointer transition-colors ${
+                className={`p-3.5 rounded-lg border text-left cursor-pointer transition-all ${
                   isSelected
-                    ? 'bg-stone-900 border-stone-700 text-stone-100'
+                    ? 'bg-stone-900 border-amber-500/70 text-stone-100'
                     : 'bg-stone-950/40 border-stone-800/80 hover:bg-stone-900/60 text-stone-400 hover:text-stone-200'
                 }`}
               >
-                <div className="text-xs font-medium text-stone-200 truncate">{s.title}</div>
-                <div className="text-[11px] font-mono text-amber-500/90 mt-0.5 truncate">{s.scope}</div>
-                <div className="mt-2 flex items-center justify-between text-[10px] font-mono text-stone-500">
+                <div className="text-xs font-semibold text-stone-100 truncate">
+                  {s.title}
+                </div>
+                <div className="text-[11px] font-mono text-amber-400 mt-0.5 truncate">
+                  {s.scope}
+                </div>
+                <div className="mt-2 flex items-center justify-between text-[10px] font-mono text-stone-400">
                   <span>{s.milestones.length} milestones</span>
                   {openDiscs > 0 && (
                     <span className="text-amber-400 flex items-center gap-1">
-                      <AlertTriangle className="w-3 h-3" /> {openDiscs} deviations
+                      <AlertTriangle className="w-3 h-3" /> {openDiscs} notes
                     </span>
                   )}
                 </div>
@@ -232,170 +268,253 @@ export default function ProjectPlanning({
         </div>
       </div>
 
-      {/* Main Content Pane */}
+      {/* Main Content Area */}
       {activeScheme ? (
-        <div className="flex-1 flex flex-col h-full overflow-hidden bg-stone-950">
-          {/* Header */}
-          <div className="p-4 border-b border-stone-800 bg-stone-900/40 flex flex-wrap items-center justify-between gap-3">
-            <div className="space-y-1">
+        <div className="flex-1 flex flex-col h-full overflow-hidden">
+          <div className="p-5 border-b border-stone-800/80 bg-[#0c0c0e] flex flex-wrap items-center justify-between gap-3">
+            <div className="space-y-1 flex-1 min-w-[280px]">
               <input
                 type="text"
                 value={activeScheme.title}
                 onChange={(e) =>
-                  onUpdateScheme({ ...activeScheme, title: e.target.value, updatedAt: Date.now() })
+                  onUpdateScheme({
+                    ...activeScheme,
+                    title: e.target.value,
+                    updatedAt: Date.now(),
+                  })
                 }
-                className="bg-transparent border-b border-transparent hover:border-stone-700 focus:border-amber-500 text-base font-serif font-medium text-stone-100 focus:outline-none"
+                className="bg-transparent border-b border-transparent hover:border-stone-700 focus:border-amber-500 text-lg font-serif font-medium text-stone-100 focus:outline-none w-full max-w-xl"
               />
               <div className="flex items-center gap-2 text-xs font-mono text-stone-400">
-                <span className="text-amber-500">{activeScheme.scope}</span>
+                <span className="text-amber-400">{activeScheme.scope}</span>
                 <span>•</span>
-                <span className="text-stone-500">Source: {activeScheme.originalSource}</span>
+                <span>Source: {activeScheme.originalSource}</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <button
+              onClick={handleAddMilestone}
+              className="px-3 py-1.5 text-xs font-mono bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-lg flex items-center gap-1.5"
+            >
+              <Plus className="w-3.5 h-3.5" /> Add Milestone Node
+            </button>
+          </div>
+
+          <div className="flex items-center border-b border-stone-800/80 bg-stone-950 px-6 text-xs font-mono">
+            {[
+              {
+                id: 'graph',
+                label: `Scheme-of-Work Dependency Graph (${activeScheme.milestones.length})`,
+              },
+              {
+                id: 'milestones',
+                label: `Detailed Milestones & Chapter Links`,
+              },
+              {
+                id: 'discrepancies',
+                label: `Plan vs. Ledger Discrepancies (${activeScheme.discrepancies.length})`,
+              },
+              {
+                id: 'characters',
+                label: `Dramatis Personae (${activeScheme.charactersInvolved.length})`,
+              },
+            ].map((t) => (
               <button
-                onClick={handleAddMilestone}
-                className="px-3 py-1.5 text-xs font-mono bg-stone-800 hover:bg-stone-700 border border-stone-700 text-stone-200 rounded flex items-center gap-1.5"
+                key={t.id}
+                onClick={() => setActiveTab(t.id as typeof activeTab)}
+                className={`py-3 px-3.5 border-b-2 transition-colors ${
+                  activeTab === t.id
+                    ? 'border-amber-500 text-amber-400 font-semibold'
+                    : 'border-transparent text-stone-400 hover:text-stone-200'
+                }`}
               >
-                <Plus className="w-3.5 h-3.5" /> Add Milestone
+                {t.label}
               </button>
-            </div>
+            ))}
           </div>
 
-          {/* Navigation Tabs */}
-          <div className="flex items-center border-b border-stone-800 bg-stone-900/30 px-4 text-xs font-mono">
-            <button
-              onClick={() => setActiveTab('milestones')}
-              className={`py-2.5 px-3 border-b-2 transition-colors flex items-center gap-1.5 ${
-                activeTab === 'milestones'
-                  ? 'border-amber-500 text-amber-400 font-medium'
-                  : 'border-transparent text-stone-400 hover:text-stone-200'
-              }`}
-            >
-              <span>Intended Milestones ({activeScheme.milestones.length})</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('graph')}
-              className={`py-2.5 px-3 border-b-2 transition-colors flex items-center gap-1.5 ${
-                activeTab === 'graph'
-                  ? 'border-amber-500 text-amber-400 font-medium'
-                  : 'border-transparent text-stone-400 hover:text-stone-200'
-              }`}
-            >
-              <GitFork className="w-3.5 h-3.5" />
-              <span>Planning Graph & Flow</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('discrepancies')}
-              className={`py-2.5 px-3 border-b-2 transition-colors flex items-center gap-1.5 ${
-                activeTab === 'discrepancies'
-                  ? 'border-amber-500 text-amber-400 font-medium'
-                  : 'border-transparent text-stone-400 hover:text-stone-200'
-              }`}
-            >
-              <ShieldAlert className="w-3.5 h-3.5" />
-              <span>Plan vs Chapter Deviations ({activeScheme.discrepancies.length})</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('characters')}
-              className={`py-2.5 px-3 border-b-2 transition-colors flex items-center gap-1.5 ${
-                activeTab === 'characters'
-                  ? 'border-amber-500 text-amber-400 font-medium'
-                  : 'border-transparent text-stone-400 hover:text-stone-200'
-              }`}
-            >
-              <Users className="w-3.5 h-3.5" />
-              <span>Dramatis Personae</span>
-            </button>
-          </div>
-
-          {/* Tab Content */}
-          <div className="flex-1 overflow-y-auto p-6 max-w-4xl space-y-6">
+          <div className="flex-1 overflow-y-auto p-6 max-w-5xl space-y-6">
             {activeTab === 'graph' && (
               <div className="space-y-6">
-                <div className="p-4 bg-stone-900/40 border border-stone-800 rounded text-xs text-stone-400">
-                  <span className="font-mono text-amber-400 font-semibold block mb-0.5">
-                    Scheme-of-Work Flow & Milestone Topology
+                <div className="p-4 border border-stone-800 rounded-xl bg-[#0e0e11] text-xs text-stone-300 leading-relaxed">
+                  <span className="text-[11px] font-mono uppercase text-amber-400 font-semibold block mb-1">
+                    Arc Overview & Structural Topology
                   </span>
-                  Visualizes intended narrative milestones in chronological order, connecting planned arc beats to actual drafted chapter workspace records.
+                  {activeScheme.overview}
                 </div>
 
-                <div className="border border-stone-800 rounded-lg bg-stone-950 p-6 overflow-x-auto">
-                  <div className="text-xs font-mono text-stone-400 mb-4 flex items-center justify-between">
-                    <span>Milestone Dependency Graph ({activeScheme.milestones.length} Nodes)</span>
-                    <span className="text-[11px] text-stone-500">Chronological Flow & Chapter Links</span>
+                {/* Interactive SVG Arc Topology */}
+                <div className="p-5 border border-stone-800 rounded-xl bg-[#0c0c0e] overflow-x-auto">
+                  <div className="text-xs font-mono text-stone-400 mb-3 flex items-center justify-between">
+                    <span>
+                      Interactive Scheme-of-Work Graph (Click any node to open its Chapter)
+                    </span>
+                    <span className="text-emerald-400">
+                      {
+                        activeScheme.milestones.filter(
+                          (m) => m.status === 'completed'
+                        ).length
+                      }{' '}
+                      / {activeScheme.milestones.length} Milestones Realized in Canon
+                    </span>
                   </div>
 
-                  <div className="min-w-[620px] space-y-4 py-2">
-                    {activeScheme.milestones.map((m, idx) => {
-                      const linkedChapter = chapters.find((c) => String(c.chapterNumber) === String(m.targetChapterNumber));
+                  <div className="min-w-[740px] py-2">
+                    {(() => {
+                      const ms = activeScheme.milestones;
+                      const cols = 4;
+                      const nodeW = 195;
+                      const nodeH = 86;
+                      const gapX = 36;
+                      const gapY = 44;
+                      const rows = Math.ceil(ms.length / cols);
+                      const svgW = cols * (nodeW + gapX) + 20;
+                      const svgH = Math.max(rows * (nodeH + gapY) + 20, 140);
+
+                      const coords = ms.map((m, i) => {
+                        const row = Math.floor(i / cols);
+                        const col = i % cols;
+                        return {
+                          id: m.id,
+                          x: 16 + col * (nodeW + gapX),
+                          y: 16 + row * (nodeH + gapY),
+                        };
+                      });
+
                       return (
-                        <div key={m.id} className="relative flex items-stretch gap-4">
-                          {/* Node Step Column */}
-                          <div className="flex flex-col items-center">
-                            <div className="w-8 h-8 rounded-full bg-stone-900 border-2 border-amber-500/80 flex items-center justify-center text-xs font-mono font-bold text-amber-400 z-10 shadow-sm">
-                              0{idx + 1}
-                            </div>
-                            {idx < activeScheme.milestones.length - 1 && (
-                              <div className="w-0.5 flex-1 bg-stone-800 my-1" />
-                            )}
-                          </div>
+                        <svg
+                          viewBox={`0 0 ${svgW} ${svgH}`}
+                          className="w-full h-auto"
+                        >
+                          <defs>
+                            <marker
+                              id="plan-arrow"
+                              viewBox="0 0 10 10"
+                              refX="7"
+                              refY="5"
+                              markerWidth="6"
+                              markerHeight="6"
+                              orient="auto-start-reverse"
+                            >
+                              <path
+                                d="M 0 1.5 L 8 5 L 0 8.5 z"
+                                fill="#f59e0b"
+                              />
+                            </marker>
+                          </defs>
 
-                          {/* Node Card */}
-                          <div className="flex-1 p-4 border border-stone-800 bg-stone-900/30 rounded-lg space-y-2">
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs font-serif font-semibold text-stone-100">
-                                {m.title}
-                              </span>
-                              <div className="flex items-center gap-2 text-xs font-mono">
-                                <span className="text-stone-400">Target: Ch. {m.targetChapterNumber}</span>
-                                <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold border ${
-                                  m.status === 'completed'
-                                    ? 'border-emerald-800 bg-emerald-950/40 text-emerald-400'
-                                    : m.status === 'drafted'
-                                    ? 'border-blue-800 bg-blue-950/40 text-blue-400'
-                                    : m.status === 'diverged'
-                                    ? 'border-amber-800 bg-amber-950/40 text-amber-400'
-                                    : 'border-stone-700 bg-stone-800 text-stone-300'
-                                }`}>
-                                  {m.status}
-                                </span>
-                              </div>
-                            </div>
+                          {ms.map((m, idx) => {
+                            if (idx === 0) return null;
+                            const prev = coords[idx - 1];
+                            const curr = coords[idx];
+                            if (!prev || !curr) return null;
+                            const sameRow = prev.y === curr.y;
+                            const d = sameRow
+                              ? `M ${prev.x + nodeW} ${prev.y + nodeH / 2} L ${curr.x} ${curr.y + nodeH / 2}`
+                              : `M ${prev.x + nodeW / 2} ${prev.y + nodeH} C ${prev.x + nodeW / 2} ${prev.y + nodeH + 22}, ${curr.x + nodeW / 2} ${curr.y - 22}, ${curr.x + nodeW / 2} ${curr.y}`;
 
-                            <div className="text-xs text-stone-300 font-mono space-y-1">
-                              <span className="text-stone-500 block text-[10px] uppercase">Intended Events:</span>
-                              <ul className="space-y-0.5 pl-3">
-                                {m.intendedEvents.map((ev, i) => (
-                                  <li key={i} className="list-disc text-stone-300">{ev}</li>
-                                ))}
-                              </ul>
-                            </div>
+                            return (
+                              <path
+                                key={`edge_${m.id}`}
+                                d={d}
+                                fill="none"
+                                stroke="#f59e0b"
+                                strokeWidth={1.6}
+                                strokeDasharray="5 3"
+                                markerEnd="url(#plan-arrow)"
+                              />
+                            );
+                          })}
 
-                            {linkedChapter ? (
-                              <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between text-xs font-mono">
-                                <span className="text-emerald-400 flex items-center gap-1.5">
-                                  <CheckCircle2 className="w-3.5 h-3.5" />
-                                  <span>Drafted in Workspace: {linkedChapter.title}</span>
-                                </span>
-                                <button
-                                  onClick={() => onNavigateToChapter(linkedChapter.id)}
-                                  className="text-amber-400 hover:text-amber-300 underline flex items-center gap-1"
+                          {ms.map((m, idx) => {
+                            const c = coords[idx];
+                            const linkedChap = chapters.find(
+                              (ch) =>
+                                String(ch.chapterNumber) ===
+                                String(m.targetChapterNumber)
+                            );
+                            return (
+                              <g
+                                key={m.id}
+                                transform={`translate(${c.x}, ${c.y})`}
+                                onClick={() => {
+                                  if (linkedChap)
+                                    onNavigateToChapter(linkedChap.id);
+                                }}
+                                className="cursor-pointer"
+                              >
+                                <rect
+                                  width={nodeW}
+                                  height={nodeH}
+                                  rx={8}
+                                  fill="#141418"
+                                  stroke={
+                                    m.status === 'completed'
+                                      ? '#10b981'
+                                      : '#f59e0b'
+                                  }
+                                  strokeWidth={1.5}
+                                />
+                                <text
+                                  x={10}
+                                  y={20}
+                                  fill="#f59e0b"
+                                  fontSize={9.5}
+                                  fontFamily="monospace"
+                                  fontWeight="bold"
                                 >
-                                  <span>Open Chapter</span>
-                                  <ArrowRight className="w-3 h-3" />
-                                </button>
-                              </div>
-                            ) : (
-                              <div className="pt-2 border-t border-stone-800/80 text-xs font-mono text-stone-500">
-                                <span>Status: Planned / Awaiting Draft Allocation</span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
+                                  Ch. {m.targetChapterNumber}
+                                </text>
+                                <text
+                                  x={nodeW - 10}
+                                  y={20}
+                                  textAnchor="end"
+                                  fill={
+                                    m.status === 'completed'
+                                      ? '#10b981'
+                                      : '#a8a29e'
+                                  }
+                                  fontSize={9}
+                                  fontFamily="monospace"
+                                >
+                                  {m.status.toUpperCase()}
+                                </text>
+                                <text
+                                  x={10}
+                                  y={41}
+                                  fill="#f5f5f4"
+                                  fontSize={10.5}
+                                  fontWeight="600"
+                                >
+                                  {m.title.length > 25
+                                    ? m.title.slice(0, 23) + '...'
+                                    : m.title}
+                                </text>
+                                <text
+                                  x={10}
+                                  y={60}
+                                  fill="#a8a29e"
+                                  fontSize={9}
+                                >
+                                  {(m.intendedEvents[0] || '').slice(0, 28)}...
+                                </text>
+                                <text
+                                  x={10}
+                                  y={76}
+                                  fill="#38bdf8"
+                                  fontSize={8.5}
+                                  fontFamily="monospace"
+                                >
+                                  {linkedChap
+                                    ? '→ Open Ledger Chapter'
+                                    : 'Awaiting Draft'}
+                                </text>
+                              </g>
+                            );
+                          })}
+                        </svg>
                       );
-                    })}
+                    })()}
                   </div>
                 </div>
               </div>
@@ -403,85 +522,87 @@ export default function ProjectPlanning({
 
             {activeTab === 'milestones' && (
               <div className="space-y-4">
-                <div className="p-3 bg-stone-900/40 border border-stone-800 rounded text-xs text-stone-400">
-                  <span className="font-mono text-amber-400 font-semibold block mb-0.5">
-                    Plan Preservation Principle
-                  </span>
-                  Planning materials represent deliberate narrative architecture. If generated chapter prose diverges from an established milestone, the discrepancy is logged for coordinator audit—the plan is never silently overwritten.
-                </div>
-
                 {activeScheme.milestones.map((m, idx) => {
-                  const linkedChapter = chapters.find((c) => String(c.chapterNumber) === String(m.targetChapterNumber));
+                  const linkedChapter = chapters.find(
+                    (c) =>
+                      String(c.chapterNumber) === String(m.targetChapterNumber)
+                  );
                   return (
                     <div
                       key={m.id}
-                      className="p-5 border border-stone-800 rounded bg-stone-900/30 space-y-3"
+                      className="p-5 border border-stone-800 rounded-xl bg-[#0e0e11] space-y-3"
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs font-mono font-bold text-amber-500">
-                            Milestone 0{idx + 1}
-                          </span>
-                          <span className="text-xs font-mono text-stone-500">
-                            (Target: Ch. {m.targetChapterNumber})
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className={`text-[10px] font-mono px-2 py-0.5 rounded uppercase border ${
-                            m.status === 'completed'
-                              ? 'border-emerald-800/80 bg-emerald-950/40 text-emerald-400'
-                              : m.status === 'drafted'
-                              ? 'border-blue-800/80 bg-blue-950/40 text-blue-400'
-                              : m.status === 'diverged'
-                              ? 'border-amber-800/80 bg-amber-950/40 text-amber-400'
-                              : 'border-stone-700 bg-stone-800 text-stone-400'
-                          }`}>
-                            {m.status}
-                          </span>
-                        </div>
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="text-amber-400 font-bold">
+                          Milestone 0{idx + 1} (Target: Ch.{' '}
+                          {m.targetChapterNumber})
+                        </span>
+                        <select
+                          value={m.status}
+                          onChange={(e) => {
+                            const nextMs = [...activeScheme.milestones];
+                            nextMs[idx] = {
+                              ...m,
+                              status: e.target.value as PlanMilestone['status'],
+                            };
+                            onUpdateScheme({
+                              ...activeScheme,
+                              milestones: nextMs,
+                              updatedAt: Date.now(),
+                            });
+                          }}
+                          className="bg-stone-900 border border-stone-700 rounded px-2 py-0.5 text-stone-200 uppercase text-[10px]"
+                        >
+                          <option value="planned">Planned</option>
+                          <option value="drafted">Drafted</option>
+                          <option value="diverged">Diverged</option>
+                          <option value="completed">Completed</option>
+                        </select>
                       </div>
 
-                      <h4 className="text-sm font-semibold text-stone-200">
+                      <h4 className="text-sm font-serif font-semibold text-stone-100">
                         {m.title}
                       </h4>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono pt-1">
-                        <div className="p-3 bg-stone-950 border border-stone-800 rounded">
-                          <span className="text-stone-400 block font-semibold mb-1">Intended Story Events</span>
-                          <ul className="space-y-1 text-stone-300">
-                            {m.intendedEvents.map((evt, i) => (
-                              <li key={i} className="flex items-start gap-1.5">
-                                <span className="text-amber-500">•</span>
-                                <span>{evt}</span>
-                              </li>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+                        <div className="p-3 bg-stone-950 border border-stone-800 rounded space-y-1">
+                          <span className="text-stone-400 uppercase text-[10px] block">
+                            Intended Events:
+                          </span>
+                          <ul className="space-y-1 text-stone-300 pl-3 list-disc">
+                            {m.intendedEvents.map((ev, i) => (
+                              <li key={i}>{ev}</li>
                             ))}
                           </ul>
                         </div>
-
-                        <div className="p-3 bg-stone-950 border border-stone-800 rounded">
-                          <span className="text-stone-400 block font-semibold mb-1">Character Beats & Thematic Intent</span>
-                          <ul className="space-y-1 text-stone-300">
-                            {m.characterBeats.map((beat, i) => (
-                              <li key={i} className="flex items-start gap-1.5">
-                                <span className="text-stone-500">•</span>
-                                <span>{beat}</span>
-                              </li>
+                        <div className="p-3 bg-stone-950 border border-stone-800 rounded space-y-1">
+                          <span className="text-stone-400 uppercase text-[10px] block">
+                            Character & Thematic Beats:
+                          </span>
+                          <ul className="space-y-1 text-stone-300 pl-3 list-disc">
+                            {m.characterBeats.map((cb, i) => (
+                              <li key={i}>{cb}</li>
                             ))}
                           </ul>
                         </div>
                       </div>
 
-                      {/* Linked Chapter Shortcut */}
                       {linkedChapter && (
-                        <div className="pt-2 flex items-center justify-between border-t border-stone-800/80 text-xs">
-                          <span className="text-stone-400 font-mono text-[11px]">
-                            Associated Chapter in Workspace: <span className="text-stone-200 font-medium">{linkedChapter.title}</span>
+                        <div className="pt-2 border-t border-stone-800 flex items-center justify-between text-xs font-mono">
+                          <span className="text-emerald-400 flex items-center gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5" />
+                            <span>
+                              Linked Chapter: {linkedChapter.title} (
+                              {linkedChapter.provenance})
+                            </span>
                           </span>
                           <button
-                            onClick={() => onNavigateToChapter(linkedChapter.id)}
-                            className="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1"
+                            onClick={() =>
+                              onNavigateToChapter(linkedChapter.id)
+                            }
+                            className="text-amber-400 hover:underline flex items-center gap-1"
                           >
-                            <span>Open Chapter Draft</span>
+                            <span>Open in Workspace</span>
                             <ArrowRight className="w-3 h-3" />
                           </button>
                         </div>
@@ -495,177 +616,178 @@ export default function ProjectPlanning({
             {activeTab === 'discrepancies' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-stone-400">
-                    Audit of deviations between intended planning objectives and actual drafted prose.
-                  </div>
+                  <p className="text-xs text-stone-400">
+                    Records divergences or title/timeline notes between planning documents and canonical Ledger chapters without overwriting either source.
+                  </p>
                   <button
-                    onClick={() => {
-                      const desc = prompt('Describe the discrepancy between plan and chapter:');
-                      if (desc) {
-                        const act = prompt('Recommended action / review resolution:') || 'Coordinator review required';
-                        handleAddDiscrepancy(chapters[0]?.id || 'chap_unknown', desc, act);
-                      }
-                    }}
-                    className="px-2.5 py-1 text-xs font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 rounded flex items-center gap-1"
+                    onClick={() => setIsNewDiscOpen(!isNewDiscOpen)}
+                    className="px-3 py-1.5 rounded bg-stone-800 hover:bg-stone-700 text-xs font-mono text-stone-200 flex items-center gap-1"
                   >
-                    <Plus className="w-3.5 h-3.5" /> Log Discrepancy
+                    <Plus className="w-3.5 h-3.5 text-amber-400" /> Log Discrepancy
                   </button>
                 </div>
 
-                {activeScheme.discrepancies.length === 0 ? (
-                  <div className="p-6 border border-stone-800 rounded bg-stone-900/20 text-center text-xs text-stone-500 font-mono">
-                    No discrepancies currently recorded. Planned milestones align with drafted developments.
-                  </div>
-                ) : (
-                  activeScheme.discrepancies.map((d, idx) => (
-                    <div
-                      key={idx}
-                      className={`p-4 border rounded space-y-2 transition-colors ${
-                        d.resolved
-                          ? 'border-stone-800/60 bg-stone-950/50 opacity-60'
-                          : 'border-amber-900/60 bg-amber-950/20'
-                      }`}
+                {isNewDiscOpen && (
+                  <div className="p-4 border border-stone-700 rounded-xl bg-stone-900/60 space-y-3 text-xs font-mono">
+                    <select
+                      value={newDiscChapterId}
+                      onChange={(e) => setNewDiscChapterId(e.target.value)}
+                      className="w-full bg-stone-950 border border-stone-800 rounded p-2 text-stone-200"
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <AlertTriangle className={`w-3.5 h-3.5 ${d.resolved ? 'text-stone-500' : 'text-amber-500'}`} />
-                          <span className="text-xs font-mono font-semibold text-stone-300">
-                            Discrepancy #{idx + 1}
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => handleToggleDiscrepancy(idx)}
-                          className={`text-xs font-mono px-2 py-0.5 rounded border ${
-                            d.resolved
-                              ? 'border-stone-700 text-stone-400 hover:text-stone-200'
-                              : 'border-amber-700 bg-amber-900/40 text-amber-300'
-                          }`}
-                        >
-                          {d.resolved ? 'Resolved' : 'Mark Resolved'}
-                        </button>
-                      </div>
-
-                      <p className="text-xs text-stone-200 font-medium leading-relaxed">
-                        {d.description}
-                      </p>
-
-                      <div className="text-[11px] font-mono text-stone-400 bg-stone-900/80 p-2 rounded border border-stone-800">
-                        <span className="text-amber-500 font-semibold">Action Required:</span> {d.actionRequired}
-                      </div>
+                      {chapters.map((c) => (
+                        <option key={c.id} value={c.id}>
+                          Ch. {c.chapterNumber}: {c.title}
+                        </option>
+                      ))}
+                    </select>
+                    <textarea
+                      rows={2}
+                      value={newDiscDesc}
+                      onChange={(e) => setNewDiscDesc(e.target.value)}
+                      placeholder="Describe the discrepancy or divergence..."
+                      className="w-full bg-stone-950 border border-stone-800 rounded p-2 text-stone-200"
+                    />
+                    <input
+                      type="text"
+                      value={newDiscAction}
+                      onChange={(e) => setNewDiscAction(e.target.value)}
+                      placeholder="Recommended resolution or note..."
+                      className="w-full bg-stone-950 border border-stone-800 rounded p-2 text-stone-200"
+                    />
+                    <div className="flex justify-end gap-2">
+                      <button
+                        onClick={() => setIsNewDiscOpen(false)}
+                        className="px-3 py-1 text-stone-400"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handleAddDiscrepancySubmit}
+                        className="px-3 py-1 bg-amber-500 text-stone-950 font-semibold rounded"
+                      >
+                        Save Discrepancy
+                      </button>
                     </div>
-                  ))
+                  </div>
                 )}
+
+                {activeScheme.discrepancies.map((d, idx) => (
+                  <div
+                    key={idx}
+                    className={`p-4 border rounded-xl space-y-2 ${
+                      d.resolved
+                        ? 'border-stone-800 bg-stone-950/60 opacity-75'
+                        : 'border-amber-800/70 bg-amber-950/15'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-amber-400 font-semibold">
+                        Discrepancy Record #{idx + 1}
+                      </span>
+                      <button
+                        onClick={() => handleToggleDiscrepancy(idx)}
+                        className="px-2 py-0.5 rounded border border-stone-700 text-stone-300"
+                      >
+                        {d.resolved ? 'Resolved' : 'Mark Resolved'}
+                      </button>
+                    </div>
+                    <p className="text-xs text-stone-200 leading-relaxed">
+                      {d.description}
+                    </p>
+                    <div className="p-2.5 bg-stone-950 border border-stone-800 rounded text-[11px] font-mono text-stone-400">
+                      <span className="text-amber-400 font-semibold">
+                        Action / Protocol:
+                      </span>{' '}
+                      {d.actionRequired}
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
 
             {activeTab === 'characters' && (
-              <div className="space-y-4">
-                <div className="p-4 border border-stone-800 rounded bg-stone-900/30 space-y-3">
-                  <h4 className="text-xs font-mono uppercase text-stone-300 font-semibold">
-                    Characters Participating in this Arc
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {activeScheme.charactersInvolved.map((char, i) => (
-                      <span key={i} className="px-3 py-1.5 rounded bg-stone-900 border border-stone-800 text-xs text-stone-200 font-mono">
-                        {char}
-                      </span>
-                    ))}
-                  </div>
+              <div className="p-5 border border-stone-800 rounded-xl bg-[#0e0e11] space-y-3">
+                <h4 className="text-xs font-mono uppercase text-stone-300 font-semibold flex items-center gap-2">
+                  <Users className="w-4 h-4 text-amber-500" />
+                  <span>Characters & Figures Participating in this Arc</span>
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {activeScheme.charactersInvolved.map((char, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1.5 rounded-lg bg-stone-950 border border-stone-800 text-xs text-stone-200 font-mono"
+                    >
+                      {char}
+                    </span>
+                  ))}
                 </div>
               </div>
             )}
           </div>
         </div>
       ) : null}
-      {/* Import Plan Modal */}
+
       {isImportModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <div className="bg-stone-950 border border-stone-800 rounded-lg max-w-lg w-full flex flex-col overflow-hidden animate-in fade-in zoom-in-95">
-            <div className="p-4 border-b border-stone-800 bg-stone-900/60 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs font-mono text-stone-200">
-                <Upload className="w-4 h-4 text-amber-500" />
-                <span className="font-semibold">Import Existing Plan Document</span>
-              </div>
+          <div className="bg-stone-950 border border-stone-800 rounded-xl max-w-lg w-full p-6 space-y-4 text-xs font-mono">
+            <div className="flex items-center justify-between">
+              <span className="text-stone-100 font-semibold">
+                Import Plan / Scheme of Work
+              </span>
               <button
                 onClick={() => setIsImportModalOpen(false)}
-                className="p-1 hover:bg-stone-800 rounded text-stone-400 hover:text-stone-200"
+                className="text-stone-400"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
-
-            <div className="p-6 space-y-4 text-xs font-mono overflow-y-auto max-h-[75vh]">
-              <div className="p-3 bg-stone-900/40 border border-stone-800 rounded text-stone-400 text-[11px] font-sans">
-                Import schemes of work, arc outlines, or chapter plans that predate this application. Provenance and original content are strictly preserved without forcing structural alterations.
-              </div>
-
-              <div>
-                <label className="text-stone-300 block mb-1 uppercase text-[10px]">Plan / Arc Title *</label>
-                <input
-                  type="text"
-                  value={importTitle}
-                  onChange={(e) => setImportTitle(e.target.value)}
-                  placeholder="E.g., Act I: The Grigori Incursion"
-                  className="w-full bg-stone-900 border border-stone-800 rounded p-2 text-xs text-stone-200 focus:outline-none focus:border-amber-500"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="text-stone-300 block mb-1 uppercase text-[10px]">Scope / Coverage</label>
-                  <input
-                    type="text"
-                    value={importScope}
-                    onChange={(e) => setImportScope(e.target.value)}
-                    placeholder="Chapters 1 to 5"
-                    className="w-full bg-stone-900 border border-stone-800 rounded p-2 text-xs text-stone-200 focus:outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="text-stone-300 block mb-1 uppercase text-[10px]">Source Provenance</label>
-                  <input
-                    type="text"
-                    value={importProvenance}
-                    onChange={(e) => setImportProvenance(e.target.value)}
-                    placeholder="Legacy Outline Archive"
-                    className="w-full bg-stone-900 border border-stone-800 rounded p-2 text-xs text-stone-200 focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="text-stone-300 block mb-1 uppercase text-[10px]">Plan Overview / Synopsis</label>
-                <textarea
-                  rows={3}
-                  value={importOverview}
-                  onChange={(e) => setImportOverview(e.target.value)}
-                  placeholder="Summary of overarching narrative direction..."
-                  className="w-full bg-stone-900 border border-stone-800 rounded p-2 text-xs text-stone-200 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="text-stone-300 block mb-1 uppercase text-[10px]">Intended Events (One per line)</label>
-                <textarea
-                  rows={4}
-                  value={importEventsRaw}
-                  onChange={(e) => setImportEventsRaw(e.target.value)}
-                  placeholder="Event 1: Issei observes water lag at the canal&#10;Event 2: Atmospheric barrier prevents cell reception&#10;Event 3: First sighting of human-form Raynare"
-                  className="w-full bg-stone-900 border border-stone-800 rounded p-2 text-xs text-stone-200 focus:outline-none"
-                />
-              </div>
+            <input
+              type="text"
+              value={importTitle}
+              onChange={(e) => setImportTitle(e.target.value)}
+              placeholder="Plan / Arc Title *"
+              className="w-full bg-stone-900 border border-stone-800 rounded p-2 text-stone-200"
+            />
+            <div className="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                value={importScope}
+                onChange={(e) => setImportScope(e.target.value)}
+                placeholder="Scope (e.g. Chapters 9-12)"
+                className="bg-stone-900 border border-stone-800 rounded p-2 text-stone-200"
+              />
+              <input
+                type="text"
+                value={importProvenance}
+                onChange={(e) => setImportProvenance(e.target.value)}
+                placeholder="Source Provenance"
+                className="bg-stone-900 border border-stone-800 rounded p-2 text-stone-200"
+              />
             </div>
-
-            <div className="p-4 border-t border-stone-800 bg-stone-900/40 flex justify-end gap-2">
+            <textarea
+              rows={3}
+              value={importOverview}
+              onChange={(e) => setImportOverview(e.target.value)}
+              placeholder="Arc Overview..."
+              className="w-full bg-stone-900 border border-stone-800 rounded p-2 text-stone-200"
+            />
+            <textarea
+              rows={4}
+              value={importEventsRaw}
+              onChange={(e) => setImportEventsRaw(e.target.value)}
+              placeholder="Intended Milestones / Events (one per line)..."
+              className="w-full bg-stone-900 border border-stone-800 rounded p-2 text-stone-200"
+            />
+            <div className="flex justify-end gap-2">
               <button
                 onClick={() => setIsImportModalOpen(false)}
-                className="px-3 py-1.5 rounded border border-stone-800 hover:bg-stone-800 text-stone-400 text-xs font-mono"
+                className="px-3 py-1.5 border border-stone-800 rounded text-stone-400"
               >
                 Cancel
               </button>
               <button
                 onClick={handleImportPlanSubmit}
-                className="px-4 py-1.5 rounded bg-amber-600 hover:bg-amber-500 text-stone-950 font-semibold text-xs font-mono"
+                className="px-4 py-1.5 bg-amber-500 text-stone-950 font-semibold rounded"
               >
                 Import Plan
               </button>

@@ -5,6 +5,43 @@ export type ProvenanceType =
   | 'generated_revision' 
   | 'derived_analysis';
 
+export type EpistemicStatus =
+  | 'explicit_text'
+  | 'derived_analysis'
+  | 'inferred'
+  | 'hypothesis'
+  | 'unresolved_question';
+
+export type CausalEdgeType =
+  | 'direct_causation'
+  | 'contributing_condition'
+  | 'temporal_succession'
+  | 'correlation'
+  | 'inferred_connection'
+  | 'setup_payoff'
+  | 'contradiction';
+
+export interface CausalEdge {
+  id: string;
+  sourceEventId: string;
+  targetEventId: string;
+  edgeType: CausalEdgeType;
+  epistemicStatus: EpistemicStatus;
+  rationale: string;
+  supportingPassageExcerpt?: string;
+}
+
+export interface PassageAnnotation {
+  id: string;
+  chapterId: string;
+  excerpt: string;
+  note: string;
+  category: 'technique_evidence' | 'causal_anchor' | 'continuity_flag' | 'character_psychology' | 'open_question';
+  epistemicStatus: EpistemicStatus;
+  linkedEntityId?: string; // Event ID, TechniquePack ID, or Question ID
+  createdAt: number;
+}
+
 export interface Revision {
   id: string;
   timestamp: number;
@@ -23,6 +60,7 @@ export interface ChapterDraft {
   chapterNumber: number | string;
   provenance: ProvenanceType;
   sourceIdentifier?: string; // E.g. Ledger ref, file source
+  parentLedgerChapterId?: string; // If forked from an authoritative Ledger snapshot
   currentContent: string;
   notes: string;
   writingObjectives: string[];
@@ -30,15 +68,25 @@ export interface ChapterDraft {
   targetPlanId?: string;
   activeTechniquePackIds: string[];
   revisions: Revision[];
+  annotations?: PassageAnnotation[];
   createdAt: number;
   updatedAt: number;
   lastAnalysisTimestamp?: number;
+}
+
+export interface TechniqueMechanismStep {
+  stepNumber: number;
+  phase: string;
+  InputState: string;
+  operation: string;
+  observableOutput: string;
 }
 
 export interface TechniquePackComponentA {
   principles: string;
   formalRepresentation: string; // Logical, causal, or structural notation
   coreAssumptions: string;
+  methodologicalStatus?: 'documented_principle' | 'project_adaptation' | 'experimental_hypothesis';
 }
 
 export interface TechniquePackComponentB {
@@ -47,6 +95,7 @@ export interface TechniquePackComponentB {
   psychologicalPhilosophicalRationale: string;
   limitationsAndRisks: string;
   evidenceBase: string; // Distinguish documented evidence from hypotheses
+  mechanismSteps?: TechniqueMechanismStep[];
 }
 
 export interface TechniquePackComponentC {
@@ -54,6 +103,7 @@ export interface TechniquePackComponentC {
   historicalContext: string;
   documentedLiteraryPrecedents: string;
   attribution: string; // Unknown origins must be explicitly stated as unknown
+  linkedCanonicalChapterIds?: string[];
 }
 
 export interface TechniquePackExample {
@@ -62,6 +112,7 @@ export interface TechniquePackExample {
   annotation: string;
   type: 'effective' | 'ineffective' | 'contrast';
   criterionAnalysis: string;
+  sourceChapterId?: string;
 }
 
 export interface TechniquePackComponentD {
@@ -74,6 +125,21 @@ export interface TechniquePackComponentE {
   constraints: string[];
   commonErrorsToAvoid: string[];
   evaluationTests: string[];
+}
+
+export interface TechniqueApplicationRecord {
+  id: string;
+  timestamp: number;
+  techniquePackId: string;
+  techniqueVersion: string;
+  chapterId: string;
+  originalPassage: string;
+  revisedPassage: string;
+  appliedProcedures: string[];
+  outcomeStatus: 'effective' | 'partial' | 'counterproductive';
+  observedEffectNotes: string;
+  methodUsed: 'manual_workbench' | 'model_assisted';
+  modelId?: string;
 }
 
 export interface TechniquePackVersion {
@@ -95,6 +161,7 @@ export interface TechniquePack {
   currentVersion: string;
   tags: string[];
   versions: Record<string, TechniquePackVersion>;
+  applicationRecords?: TechniqueApplicationRecord[];
   createdAt: number;
   updatedAt: number;
 }
@@ -118,12 +185,13 @@ export interface PlanMilestone {
   characterBeats: string[];
   thematicGoals: string[];
   status: 'planned' | 'drafted' | 'diverged' | 'completed';
+  dependsOnMilestoneIds?: string[];
 }
 
 export interface SchemeOfWork {
   id: string;
   title: string;
-  scope: string; // e.g., 'Act I: The Grigori Incursion'
+  scope: string; // e.g., 'Act I: Mortality, Transmigration & The Kuoh Threshold'
   originalSource: string; // Origin provenance
   overview: string;
   charactersInvolved: string[];
@@ -142,6 +210,7 @@ export type EventChronologyType = 'linear' | 'flashback' | 'simultaneous' | 'pro
 
 export interface StoryEvent {
   id: string;
+  chapterId?: string;
   sequenceIndex: number;
   title: string;
   summary: string;
@@ -152,16 +221,20 @@ export interface StoryEvent {
   decisionPoints: string[];
   directConsequences: string[];
   causalPredecessors: string[]; // Event IDs that directly cause this event
+  temporalPredecessors?: string[]; // Events that merely precede temporally without causing it
+  epistemicStatus?: EpistemicStatus;
   supportingPassageExcerpt?: string;
   uncertaintyOrInferenceNotes?: string;
 }
 
 export interface CharacterKnowledgeState {
   characterName: string;
+  roleOrIdentityNote?: string;
   knows: string[];
   suspects: string[];
   believesFalsely: string[];
   unawareOf: string[];
+  evidencePassage?: string;
 }
 
 export interface ContinuityFinding {
@@ -169,6 +242,7 @@ export interface ContinuityFinding {
   severity: 'critical_contradiction' | 'soft_discrepancy' | 'unresolved_thread' | 'verified_continuity';
   description: string;
   affectedChaptersOrEvents: string[];
+  epistemicStatus?: EpistemicStatus;
   passageReference?: string;
   passageRef?: string;
   recommendedResolution?: string;
@@ -180,18 +254,22 @@ export interface ChapterAnalysis {
   chapterVersionTimestamp: number;
   analyzedAt: number;
   isStale: boolean;
+  provenance?: ProvenanceType;
   modelIdentifier?: string;
   events: StoryEvent[];
+  causalEdges?: CausalEdge[];
   characterKnowledge: CharacterKnowledgeState[];
   setupsAndPayoffs: {
     setup: string;
     payoff: string;
     status: 'setup_only' | 'paid_off' | 'abandoned';
     passageRef?: string;
+    targetChapterRef?: string;
   }[];
   continuityFindings: ContinuityFinding[];
   identifiedTechniques: {
     techniqueName: string;
+    techniquePackId?: string;
     confidence: 'high_evidence' | 'moderate' | 'inferred';
     supportingPassage: string;
     analysis: string;
@@ -202,6 +280,40 @@ export interface ChapterAnalysis {
     causalIntegrityScore?: string;
     summary: string;
   };
+}
+
+export interface InvestigationQuestion {
+  id: string;
+  title: string;
+  category: 'continuity_mystery' | 'causal_gap' | 'character_identity' | 'technique_experiment' | 'textual_discrepancy';
+  status: 'open' | 'investigating' | 'resolved_in_canon' | 'working_hypothesis';
+  summary: string;
+  competingHypotheses: {
+    id: string;
+    statement: string;
+    epistemicStatus: EpistemicStatus;
+    supportingEvidence: {
+      chapterId: string;
+      excerpt: string;
+      note: string;
+    }[];
+    counterEvidence?: string;
+  }[];
+  linkedChapterIds: string[];
+  linkedTechniquePackIds?: string[];
+  updatedAt: number;
+}
+
+export interface PinnedWorkingItem {
+  id: string;
+  type: 'passage' | 'technique' | 'event' | 'question' | 'finding';
+  title: string;
+  subtitle?: string;
+  content: string;
+  chapterId?: string;
+  sourceId?: string;
+  provenance: ProvenanceType | EpistemicStatus;
+  pinnedAt: number;
 }
 
 export interface EvaluationCriterion {
@@ -269,6 +381,8 @@ export interface WorkspaceState {
   analyses: ChapterAnalysis[];
   evaluations: EvaluationRecord[];
   executionLogs: AIExecutionLog[];
+  investigations?: InvestigationQuestion[];
+  pinnedItems?: PinnedWorkingItem[];
   activeChapterId?: string;
   ledgerConnection: {
     status: 'unconnected_standalone' | 'connected_proxy';
