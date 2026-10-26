@@ -19,163 +19,164 @@ export const INITIAL_SCHEMES_OF_WORK: SchemeOfWork[] = [
     title: 'Act I: Mortality, Transmigration & The Kuoh Threshold (Ch. 1–8)',
     scope: 'Chapters 1 to 8 — Canonical Ledger Arc',
     originalSource: 'idesmond11p7/The-Ledger (Authoritative Chapter Dump + Coordinator Architecture)',
-    overview: 'Traces seventeen-year-old Jonah Laurence’s final days (sleep paralysis, targeted social sabotage, and fatal collision while chasing a phone thief), his disembodied transit beyond the observable universe, and his awakening in 2005 Japan inside the sixteen-year-old body of "Ira Lowe"—culminating in the Kuoh Academy entrance examination and the decision to investigate the organization behind his fabricated educational dossier.',
+    overview: 'Traces seventeen-year-old Jonah Laurence’s final days (two nights of sleep paralysis in Chapter 1, the shift from third-person to first-person in Chapter 2 alongside group-chat screenshot sabotage and anonymous warnings, and his fatal collision in Chapter 3 while chasing a phone thief), his disembodied cosmic transit in Chapter 4, and his awakening in 2005 Japan inside the sixteen-year-old body of "Ira Lowe"—culminating in the Kuoh Academy entrance examination (Chapters 6–7) and his decision in Chapter 8 to investigate the organization behind his fabricated educational dossier.',
     charactersInvolved: [
       'Jonah Laurence (Original Self, Ch. 1–3)',
       'Ira Lowe (Reincarnated Vessel / Identity, Ch. 4–8)',
-      'Jonah’s Mother (Ch. 1, remembered in Ch. 3, 5, 8)',
-      'Daniel (Jonah’s Best Friend, Ch. 1–3)',
-      'Maya (Classmate in Ch. 1–2)',
+      'Jonah’s Mother (Ch. 1–3, remembered in Ch. 4, 5, 8)',
+      'Daniel (Jonah’s Best Friend, Ch. 1–3, remembered in Ch. 4, 5)',
+      'Maya (Classmate in Ch. 2)',
+      'Unnamed Classmate Who Returns Notebook (Ch. 3)',
       'Unidentified Kuoh Student Council Figure (Violet Eyes / Extended Shadow, Ch. 6)'
     ],
     milestones: [
       {
-        id: 'm_ch1_morning',
-        title: 'M1: The 3:17 AM Entity & The Improvement List',
+        id: 'm_ch1_normalcy',
+        title: 'M1: The Weight of Normalcy — Two Nights of Paralysis & Anonymous Warnings',
         targetChapterNumber: 1,
         intendedEvents: [
-          'Jonah experiences sleep paralysis at 3:17 AM with an upright shadow scraping the floorboards',
-          'Receives anonymous midnight texts ("You awake?", "You should watch your back")',
-          'Writes "List for Improving My Life" in his phone notes and walks to school with Daniel'
+          'Written in third-person limited: Jonah wakes in pitch-black sleep paralysis, hears a soft scrape, sees a low floor shape and a pale hand whose finger bends too far, and breaks free at 3:17 AM during a power outage',
+          'Receives "You awake?" from an unknown number (at 6:11 AM and again on his walk to school), sees a reposted accusation screenshot in class, and receives "You should watch your back" while eating rice and stew at lunch',
+          'At 12:42 AM that night, paralysis and total darkness return; a slow, wet breath sounds in the room and a voice that is not his mother’s whispers "Jonah."'
         ],
         characterBeats: [
-          'Self-perception as "average" and chronic reliance on "tomorrow" to fix his habits',
-          'Quiet domestic warmth with his mother before school'
+          'Attempts to dismiss the 3:17 AM encounter as a "bad dream" while clinging to the mundane routine of school and home',
+          'Strained, taciturn domestic exchanges with his mother ("You’re late" / "You always have an excuse")'
         ],
         thematicGoals: [
-          'Establish the fragile normalcy and deferred promises of Jonah’s original life'
+          'Establish claustrophobic perceptual restriction and the erosion of ordinary safety from both night terror and social rumors'
         ],
         status: 'completed'
       },
       {
         id: 'm_ch2_fracture',
-        title: 'M2: Social Sabotage & The Second Anonymous Warning',
+        title: 'M2: The Fracture — First-Person Shift, Mirror Assessment & Second Warning',
         targetChapterNumber: 2,
         intendedEvents: [
-          'Out-of-context group chat screenshots circulate across the school',
-          'Maya returns Jonah’s history notebook and distances herself',
-          'Unknown number texts: "You looked happy today. Enjoy it while you can."'
+          'Shifts to first-person narration ("I woke up before my alarm" at 6:17 AM); introduces the ceiling crack and the mirror routine ("Ugly. ... Not ugly. ... Average.")',
+          'Walks to school with Daniel and banters with Maya about the undone assignment; laughs behind the science block until two new altered screenshots and hostile comments arrive',
+          'While procrastinating on homework at home, an unknown number texts: "You looked happy today." / "Enjoy it while you can."'
         ],
         characterBeats: [
-          'Helplessness against coordinated reputational fracture',
-          'Growing sense of unseen surveillance'
+          'Relief in small, ordinary friendships (Daniel knowing when not to push; trading terrible memes at night)',
+          'Hatred of not knowing what people actually believe behind his back'
         ],
         thematicGoals: [
-          'Erode Jonah’s social perimeter prior to physical isolation in Chapter 3'
+          'Contrast genuine adolescent camaraderie against anonymous surveillance and rumor distortion'
         ],
         status: 'completed',
-        dependsOnMilestoneIds: ['m_ch1_morning']
+        dependsOnMilestoneIds: ['m_ch1_normalcy']
       },
       {
-        id: 'm_ch3_impact',
-        title: 'M3: The Phone Theft Pursuit & Fatal Collision',
+        id: 'm_ch3_tomorrow',
+        title: 'M3: Maybe Tomorrow — The Sunrise Memory, The List & The Collision',
         targetChapterNumber: 3,
         intendedEvents: [
-          'Daniel departs early for an appointment, leaving Jonah to walk home alone',
-          'A hooded thief snatches Jonah’s blue-cased phone containing his improvement list',
-          'Jonah chases the thief into a sudden downpour and is struck by an impossibly massive black vehicle'
+          'Wakes at 6:11 AM; Mom recalls six-year-old Jonah dragging his blanket to watch the sunrise at 5 AM and says "You’re welcome, Jonah Laurence"; banters with Daniel ("four minutes late / four minutes early")',
+          'Snaps defensively at a girl returning his forgotten notebook ("Feel sorry for me"), then realizes his mistake and resolves to practice self-control, typing "Things I need to fix" in his phone Notes app before receiving "You looked happy today. / Enjoy it while you can." again',
+          'Next afternoon, a thief snatches his blue-cased phone; Jonah chases him into sudden pouring rain and is struck by an impossibly massive black vehicle ("...I’ll do better")'
         ],
         characterBeats: [
-          'Desperate refusal to lose his phone/list',
-          'Dying stream-of-consciousness culminating in "...I’ll do better" and belief in "Tomorrow"'
+          'Recognition that he projects hostility onto harmless people ("I knew what I imagined they thought")',
+          'Dying stream-of-consciousness weaving together Mom, Daniel, the sunrise window, the girl with the notebook, and his belief in "Tomorrow"'
         ],
         thematicGoals: [
-          'Sever the first life at the moment of unresolved intention'
+          'Sever Jonah’s first life at the exact moment he chooses self-discipline and hope'
         ],
         status: 'completed',
         dependsOnMilestoneIds: ['m_ch2_fracture']
       },
       {
         id: 'm_ch4_beyond',
-        title: 'M4: Cosmic Transit & Awakening on the Hill',
+        title: 'M4: Beyond — Cosmic Transit & Awakening on the Hill',
         targetChapterNumber: 4,
         intendedEvents: [
-          'Disembodied drift past black holes, non-Euclidean geometry, and the shrinking sphere of the observable universe',
-          'Collision with an ancient boundary wall and awakening on a moonlit grassy hill in a new body',
-          'Instinctive sightline check (treeline, ditch, blind corner) and discovery of the unfamiliar reflection in the apartment mirror'
+          'Disembodied drift past stars, an accretion-disk black hole, non-Euclidean folding geometry, and the shrinking pale sphere of the observable universe',
+          'Collision with an ancient pre-existent boundary wall and awakening on a moonlit grassy hill in a new body',
+          'Autonomous tactical sightline check (treeline, ditch, blind corner), discovery of a soft foreign voice, and shock at the stranger in the apartment bathroom mirror ("What the fuck?")'
         ],
         characterBeats: [
-          'Ontological awe and terror during cosmic transit',
-          'Visceral shock of inhabiting a foreign body with autonomous predatory grace and a soft voice'
+          'Ontological awe and terror during timeless cosmic transit',
+          'Visceral shock of inhabiting a body that moves with pre-trained, effortless grace a fraction of a beat ahead of conscious thought'
         ],
         thematicGoals: [
-          'Bridge cosmic scale with hyper-specific bodily alienation'
+          'Bridge cosmic immensity with hyper-specific bodily and sensory alienation'
         ],
         status: 'completed',
-        dependsOnMilestoneIds: ['m_ch3_impact']
+        dependsOnMilestoneIds: ['m_ch3_tomorrow']
       },
       {
         id: 'm_ch5_second_morning',
-        title: 'M5: Grief, Identity Discovery (Ira Lowe) & Reconnaissance to Kuoh',
+        title: 'M5: A Second Morning — Grief, Identity Discovery (Ira Lowe) & Reconnaissance to Kuoh',
         targetChapterNumber: 5,
         intendedEvents: [
-          'Daylight examination of the new body (16-year-old male with delicate features, emerald eyes, long black-and-teal hair)',
-          'Emotional breakdown mourning his lost home and family, followed by resolve in the shower',
-          'Discovery of the "Ira Lowe" ID card and Kuoh Academy entrance exam notice; first reconnaissance trip to Kuoh'
+          'Daylight examination of the new body (16-year-old male with delicate features, large green eyes, long black-and-teal hair)',
+          'Grief and breakdown mourning his lost home and family, followed by quiet resolve in the shower ("Maybe this was a second chance")',
+          'Discovery of the "Ira Lowe" ID card and Kuoh Academy entrance exam notice; first reconnaissance trip by train and paper map to Kuoh Academy’s gates'
         ],
         characterBeats: [
-          'Acceptance that he is alive and has a second chance',
-          'Navigating an unfamiliar Japanese city using a paper map and strangers’ directions'
+          'Mourning the ordinary life and small complaints he can never return to',
+          'Transitioning from grief to practical agency by locating the station and campus before exam day'
         ],
         thematicGoals: [
-          'Transition from paralysis and grief to practical agency'
+          'Turn "Tomorrow" from a tragic interrupted promise into a concrete, survivable next step'
         ],
         status: 'completed',
         dependsOnMilestoneIds: ['m_ch4_beyond']
       },
       {
         id: 'm_ch6_mechanics_morning',
-        title: 'M6: Exam Day Commute, Applicant 1044 & The Corridor Shadow',
+        title: 'M6: The Mechanics of Morning — Applicant 1044 & The Corridor Shadow',
         targetChapterNumber: 6,
         intendedEvents: [
           'Morning routine in the 2005 apartment; commuter train interaction with the hazel-eyed woman; pork bun at Minami-Chofu',
-          'Near-miss with the Rapid train; registration at Kuoh Academy as Applicant No. 1044 ("Overseas transfer / Independent curriculum")',
-          'Encounter in the main hall with the tall, violet-eyed student council figure whose shadow stretches 5–6 inches too long'
+          'Near-miss with the Rapid train ("Kuoh: Passed"); registration at Kuoh Academy as Applicant No. 1044 ("Overseas transfer / Independent curriculum")',
+          'Encounter in the main hall with the tall, violet-eyed student council figure whose shadow stretches 5–6 inches past window mullion geometry'
         ],
         characterBeats: [
           'Self-possession under pressure ("You fix the problem. You don’t whine about the track")',
           'Claiming ownership of his new hands in Room 301 as the 9:00 AM bronze bell strikes'
         ],
         thematicGoals: [
-          'Ground the supernatural world of Kuoh in dense 2005 material realism before hinting at its hidden rulers'
+          'Ground Kuoh in dense 2005 material realism while planting a single uncertain visual clue of its hidden hierarchy'
         ],
         status: 'completed',
         dependsOnMilestoneIds: ['m_ch5_second_morning']
       },
       {
         id: 'm_ch7_examination',
-        title: 'M7: The Examination & Quiet Decompression',
+        title: 'M7: The Examination — Procedural Rhythm & Quiet Decompression',
         targetChapterNumber: 7,
         intendedEvents: [
-          'Completing the 80-minute Language and Mathematics modules at Desk 44',
-          'Experiencing simultaneous dual awareness as Ira’s hand writes kanji while Jonah comprehends the meaning',
-          'Post-exam walk down Kuoh hill, eating warm curry buns in the park, and returning to the quiet apartment'
+          'Completing the 80-minute Language and Mathematics modules at Desk 44 in Room 301',
+          'Experiencing simultaneous dual awareness as Ira’s hand writes kanji effortlessly while Jonah comprehends the meaning',
+          'Post-exam walk down Kuoh hill, eating warm curry buns in the park, and returning to the quiet apartment ("For the first time since morning, I had nothing I needed to do.")'
         ],
         characterBeats: [
-          'Disciplined focus under institutional rules',
-          'Quiet earned relief ("I’m back") followed by the onset of post-task silence'
+          'Disciplined procedural focus under institutional time pressure',
+          'Unconsciously saying "I’m back" to an empty apartment and washing graphite from his palm'
         ],
         thematicGoals: [
-          'Demonstrate competence and the quiet rhythms of ordinary survival'
+          'Demonstrate cognitive/motor duality and the quiet weight of returning to an unlived apartment'
         ],
         status: 'completed',
         dependsOnMilestoneIds: ['m_ch6_mechanics_morning']
       },
       {
         id: 'm_ch8_architecture_waiting',
-        title: 'M8: The Architecture of Waiting & The Dossier Lead',
+        title: 'M8: The Architecture of Waiting — The Café Mismatch & The Dossier Lead',
         targetChapterNumber: 8,
         intendedEvents: [
-          'Confronting the lack of biographical memories behind his "Overseas Transfer / Independent Curriculum" dossier',
-          'Formulating and testing the "Think ahead" rule at a local café (waitress exchange vs. awkward mismatch with two teenage boys)',
-          'Copying the issuer address (Kanagawa Prefectural Educational Development Association, Minami-Kuoh annex) to investigate at the library tomorrow'
+          'Opens by repeating Chapter 7’s final line; confronts the biographical void behind his "Overseas Transfer / Independent Curriculum" dossier',
+          'Formulates and tests the "Think ahead" rule at a local café (over-formal waitress exchange vs. answering an unasked question with two teenage boys)',
+          'Copies the issuer address (Kanagawa Prefectural Educational Development Association, Minami-Kuoh annex) and marks his paper map to check a library directory tomorrow'
         ],
         characterBeats: [
-          'Recognizing that pre-scripting conversations cannot solve his missing past',
-          'Shifting from defensive social anxiety to concrete archival investigation'
+          'Recognizing that his defensive rule ("Think ahead") promises control by making every surprise feel like a personal failure',
+          'Pivoting from social pre-scripting to concrete empirical investigation'
         ],
         thematicGoals: [
-          'Launch the next narrative arc: investigating who constructed "Ira Lowe"'
+          'Launch the Minami-Kuoh investigation into who constructed the "Ira Lowe" identity'
         ],
         status: 'completed',
         dependsOnMilestoneIds: ['m_ch7_examination']
@@ -184,14 +185,14 @@ export const INITIAL_SCHEMES_OF_WORK: SchemeOfWork[] = [
     discrepancies: [
       {
         chapterId: 'ledger_chapter_08_f9fb939',
-        description: 'Ledger Title Discrepancy: Canonical file `ledger/records/chapter/chapter_08_the_architecture_of_waiting.md` is titled "Chapter 8 — The Architecture of Waiting", whereas an earlier user request referred to Chapter 8 as "The Logistics of Waiting".',
-        actionRequired: 'Preserve authoritative Ledger title ("The Architecture of Waiting") while keeping "The Logistics of Waiting" indexed in search and continuity notes.',
+        description: 'Ledger Title Discrepancy: Canonical file `ledger/records/chapter/chapter_08_the_architecture_of_waiting.md` is titled "Chapter 8 — The Architecture of Waiting", whereas an earlier planning note referred to Chapter 8 as "The Logistics of Waiting".',
+        actionRequired: 'Preserve authoritative Ledger title ("The Architecture of Waiting") while keeping "The Logistics of Waiting" documented in metadata.',
         resolved: false
       },
       {
-        chapterId: 'ledger_chapter_06_c914b6a',
-        description: 'Chapter 6 explicitly anchors the setting in early spring 2005 (silver Panasonic flip phone, pre-Suica paper magnetic tickets, 2005 cinema posters), whereas Chapters 1–3 feature modern smartphone group-chat screenshots in Jonah’s original world/timeline.',
-        actionRequired: 'Track cross-world / cross-temporal displacement between Jonah’s origin timeline and Ira Lowe’s 2005 Kuoh timeline as a verified structural feature.',
+        chapterId: 'ledger_chapter_01_7720d50',
+        description: 'Observed POV Shift & Repeated Threat Texts: Chapter 1 is written in third-person limited ("Jonah woke because he heard something"), whereas Chapters 2–8 are written in first person ("I woke up before my alarm"). Additionally, the unknown-number messages "You looked happy today. / Enjoy it while you can." appear in both Chapter 2 and Chapter 3.',
+        actionRequired: 'Preserve as observed textual features of the authoritative Ledger chapters; do not silently rewrite or flatten.',
         resolved: true
       }
     ],
@@ -214,50 +215,51 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
         id: 'evt_ch1_01',
         chapterId: 'ledger_chapter_01_7720d50',
         sequenceIndex: 1,
-        title: '12:42 AM Anonymous Threat Texts',
-        summary: 'Prior to falling asleep, Jonah receives two messages from an unknown number ("You awake?" and "You should watch your back") and blocks the sender.',
+        title: '3:17 AM Sleep Paralysis & The Low Floor Shape',
+        summary: 'Jonah wakes in pitch darkness unable to move or speak above a whisper ("...Mum?"), hears a soft scrape near the doorway, sees a low shape moving without changing height and a pale hand whose finger bends farther than it should, and jerks free when something touches near his ankle—knocking his phone to the floor at 3:17 AM during a power outage.',
         sceneLocation: 'Jonah’s Bedroom',
-        chronologyType: 'flashback',
-        storyTimeEstimate: '12:42 AM',
-        charactersPresent: ['Jonah Laurence'],
-        decisionPoints: ['Assumes it is a prank and blocks the number'],
-        directConsequences: ['Heightened subconscious unease entering sleep'],
+        chronologyType: 'linear',
+        storyTimeEstimate: '3:17 AM',
+        charactersPresent: ['Jonah Laurence', 'Unidentified Bedroom Entity'],
+        decisionPoints: ['Checks locked bedroom door twice', 'Stays awake until his 6:11 AM alarm and tells himself it was a "bad dream"'],
+        directConsequences: ['Enters the school day sleep-deprived and hyper-aware of his phone'],
         causalPredecessors: [],
         epistemicStatus: 'explicit_text',
-        supportingPassageExcerpt: '12:42 AM — Unknown Number: You awake?\n12:43 AM — Unknown Number: You should watch your back.'
+        supportingPassageExcerpt: 'A hand appeared. It touched the floor. The fingers were pale... Then one finger bent. Jonah’s stomach dropped. It bent farther than it should have.'
       },
       {
         id: 'evt_ch1_02',
         chapterId: 'ledger_chapter_01_7720d50',
         sequenceIndex: 2,
-        title: '3:17 AM Sleep Paralysis & Corner Entity',
-        summary: 'Jonah wakes at 3:17 AM unable to move or breathe while an upright mass of thick shadow in the corner produces a slow, dry scraping sound across the floorboards.',
-        sceneLocation: 'Jonah’s Bedroom',
+        title: 'Anonymous "You awake?" Texts, Reposted Screenshot & Lunch Warning',
+        summary: 'After waking at 6:11 AM and eating two slices of bread in the kitchen at 6:26 AM, Jonah receives "You awake?" from an unknown number (twice, blocking it both times), sees a reposted accusation screenshot in class, and while eating rice and stew at lunch receives "You should watch your back."',
+        sceneLocation: 'Laurence Home, Street & School',
         chronologyType: 'linear',
-        storyTimeEstimate: '3:17 AM',
-        charactersPresent: ['Jonah Laurence', 'Unidentified Corner Entity'],
-        decisionPoints: ['Struggles to move fingers while paralyzed'],
-        directConsequences: ['Wakes exhausted at 6:00 AM questioning whether it was a nightmare'],
-        causalPredecessors: ['evt_ch1_01'],
+        storyTimeEstimate: '6:11 AM – Afternoon',
+        charactersPresent: ['Jonah Laurence', 'Jonah’s Mother', 'Daniel'],
+        decisionPoints: ['Blocks the unknown number twice', 'Types "Who is this?" at lunch then deletes it and puts the phone away'],
+        directConsequences: ['Loses his appetite and returns home in the rain at 6:03 PM under mounting isolation'],
+        causalPredecessors: [],
+        temporalPredecessors: ['evt_ch1_01'],
         epistemicStatus: 'explicit_text',
-        supportingPassageExcerpt: 'Right where the closet met the wall, the shadows were too thick... Scrrrrtch. A slow, dry sound.'
+        supportingPassageExcerpt: 'Unknown number. He opened it. You should watch your back.'
       },
       {
         id: 'evt_ch1_03',
         chapterId: 'ledger_chapter_01_7720d50',
         sequenceIndex: 3,
-        title: 'Drafting "List for Improving My Life" & Morning Routine',
-        summary: 'At 6:00 AM, Jonah eats breakfast with his mother ("You’re welcome, Jonah Laurence") and creates a 5-point self-improvement list in his phone notes before walking to school with Daniel.',
-        sceneLocation: 'Laurence Kitchen & Suburban Street',
+        title: '12:42 AM Second Paralysis & The Voice Beside the Bed',
+        summary: 'Unable to sleep at 12:42 AM, Jonah hears the scrape again as pitch darkness and paralysis lock his body; a slow, wet breath sounds in the room and something very close to his bed whispers "Jonah" in a voice that is not his mother’s.',
+        sceneLocation: 'Jonah’s Bedroom',
         chronologyType: 'linear',
-        storyTimeEstimate: '6:00 AM – 7:45 AM',
-        charactersPresent: ['Jonah Laurence', 'Jonah’s Mother', 'Daniel'],
-        decisionPoints: ['Writes list: Wake up early, Exercise, Study harder, Stop wasting time, Read more'],
-        directConsequences: ['Establishes the phone and unfinished list as the emotional anchor he will die chasing in Chapter 3'],
-        causalPredecessors: [],
+        storyTimeEstimate: '12:42 AM',
+        charactersPresent: ['Jonah Laurence', 'Unidentified Bedroom Entity'],
+        decisionPoints: ['Tries to turn his head while paralyzed'],
+        directConsequences: ['Culminates Chapter 1 on an unresolved auditory intrusion beside his bed'],
+        causalPredecessors: ['evt_ch1_01'],
         temporalPredecessors: ['evt_ch1_02'],
         epistemicStatus: 'explicit_text',
-        supportingPassageExcerpt: 'List for Improving My Life:\n1. Wake up early\n2. Exercise\n3. Study harder\n4. Stop wasting time\n5. Read more'
+        supportingPassageExcerpt: 'Then, very close to his bed, something whispered his name. “Jonah.” His eyes widened. And this time, he knew the voice wasn’t his mother’s.'
       }
     ],
     causalEdges: [
@@ -265,85 +267,190 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
         id: 'edge_ch1_1',
         sourceEventId: 'evt_ch1_01',
         targetEventId: 'evt_ch1_02',
-        edgeType: 'contributing_condition',
-        epistemicStatus: 'inferred',
-        rationale: 'The 12:42 AM warning texts precede the 3:17 AM corner entity; whether the sender and the entity are causally linked or part of the same stalking/omen sequence remains an active investigation.',
-        supportingPassageExcerpt: '12:43 AM — Unknown Number: You should watch your back.'
+        edgeType: 'temporal_succession',
+        epistemicStatus: 'explicit_text',
+        rationale: 'The 6:11 AM alarm follows the 3:17 AM paralysis; whether the unknown-number texter ("You awake?") is connected to the nocturnal entity is left unconfirmed in the text.',
+        supportingPassageExcerpt: 'At 6:11, his alarm went off... The last was from an unknown number. You awake?'
       },
       {
         id: 'edge_ch1_2',
-        sourceEventId: 'evt_ch1_02',
+        sourceEventId: 'evt_ch1_01',
         targetEventId: 'evt_ch1_03',
-        edgeType: 'temporal_succession',
+        edgeType: 'contributing_condition',
         epistemicStatus: 'explicit_text',
-        rationale: 'The 6:00 AM alarm interrupts the night terror and initiates the mundane morning routine, though Jonah’s improvement list comes from long-standing habit rather than the entity.',
-        supportingPassageExcerpt: 'BEEP. BEEP. BEEP. Light flooded the room.'
+        rationale: 'Remembering the previous night’s darkness, shape, and hand keeps Jonah awake past 12:42 AM when the scrape and paralysis recur.',
+        supportingPassageExcerpt: 'He remembered the room from the night before. The darkness. The shape. The hand... And then he heard the scrape again.'
       }
     ],
     characterKnowledge: [
       {
         characterName: 'Jonah Laurence',
-        roleOrIdentityNote: 'Protagonist (17 years old, Original Life)',
+        roleOrIdentityNote: 'Protagonist (Third-Person Limited Focalizer in Ch. 1)',
         knows: [
-          'He received two anonymous texts at 12:42 AM and blocked the number',
-          'He experienced a terrifying paralysis episode at 3:17 AM with a scraping sound in the corner',
-          'Maya borrowed his history notebook the previous week'
+          'His bedroom door was locked both before and after the 3:17 AM paralysis episode, and the power was out',
+          'An unknown number texted "You awake?" twice and "You should watch your back" at lunch',
+          'Someone reposted an altered accusation screenshot in the school groups',
+          'The voice whispering "Jonah" beside his bed after 12:42 AM was not his mother’s'
         ],
         suspects: [
-          'The 12:42 AM messages were just a prank from someone at school'
+          'Students at school are whispering and looking at phones behind the teacher’s back because of the reposted screenshot'
         ],
         believesFalsely: [
-          'He has plenty of tomorrows left to gradually improve his life',
-          'Blocking the first unknown number ended the harassment'
+          'Calling the 3:17 AM experience a "bad dream" or blocking the unknown number will make the intrusions stop'
         ],
         unawareOf: [
-          'Cropped screenshots of his old group chats are about to be posted anonymously at school (Ch. 2)',
-          'He will die in the rain tomorrow afternoon (Ch. 3)'
+          'What the low moving shape in his bedroom actually is',
+          'Who is sending the unknown-number messages'
         ],
-        evidencePassage: 'I was seventeen. Seventeen wasn’t old.'
+        evidencePassage: 'Nothing had happened. Nothing that could leave a mark, anyway.'
       }
     ],
     setupsAndPayoffs: [
       {
-        setup: 'Jonah’s phone Notes app containing "List for Improving My Life" (Ch. 1)',
-        payoff: 'Jonah sprints after the phone thief in Ch. 3 because the phone holds his unfinished list, leading directly into the path of the black vehicle.',
-        status: 'paid_off',
-        passageRef: 'My list. The notes app. I hadn’t finished it.',
-        targetChapterRef: 'ledger_chapter_03_013bf32'
-      },
-      {
-        setup: 'Mother’s parting kitchen phrase: "You’re welcome, Jonah Laurence." (Ch. 1)',
-        payoff: 'Recalled as Jonah’s most cherished memory as he dies on the wet asphalt in Chapter 3.',
-        status: 'paid_off',
-        passageRef: '"You’re welcome, Jonah Laurence." I wanted to hear it again.',
-        targetChapterRef: 'ledger_chapter_03_013bf32'
-      },
-      {
-        setup: '3:17 AM upright shadow and dry scraping sound in Jonah’s bedroom corner (Ch. 1)',
-        payoff: 'Unresolved ontological origin—potential connection to his transmigration or the forces monitoring him.',
+        setup: '3:17 AM sleep paralysis, low floor shape, abnormally bending pale finger, and 12:42 AM whispered name ("Jonah") in Chapter 1',
+        payoff: 'Remains an open, underdetermined lacuna across Chapters 2–3 that Jonah rationalizes as stress/nightmares right up until the afternoon of his death.',
         status: 'setup_only',
-        passageRef: 'Scrrrrtch. A slow, dry sound.'
+        passageRef: 'Then, very close to his bed, something whispered his name. “Jonah.”'
       }
     ],
     continuityFindings: [
       {
         id: 'cf_ch1_01',
-        severity: 'verified_continuity',
-        description: 'Daniel’s "four minutes early / four minutes late" banter in Chapter 1 is accurately recalled word-for-word during Jonah’s dying sensory flash in Chapter 3.',
-        affectedChaptersOrEvents: ['ledger_chapter_01_7720d50', 'ledger_chapter_03_013bf32'],
+        severity: 'soft_discrepancy',
+        description: 'POV Transition between Chapter 1 and Chapter 2: Chapter 1 is narrated in third-person limited ("Jonah woke because he heard something"), whereas Chapter 2 shifts permanently to first-person ("I woke up before my alarm").',
+        affectedChaptersOrEvents: ['ledger_chapter_01_7720d50', 'ledger_chapter_02_7b063d9'],
         epistemicStatus: 'explicit_text',
-        passageReference: 'You’re four minutes late. No. Four minutes early. Whatever.'
+        passageReference: 'Jonah woke because he heard something. (Ch. 1) vs. I woke up before my alarm. (Ch. 2)',
+        recommendedResolution: 'Documented in Ledger Camera Eye research notes as an observed POV transition; do not automatically alter.'
       }
     ],
     identifiedTechniques: [],
     overallNarrativeAssessment: {
       strengths: [
-        'Seamless contrast between 3:17 AM nocturnal dread and warm, grounded suburban morning banter',
-        'Every mundane detail (the crack in the ceiling, the mother’s phrase, the notes list) pays off emotionally in Chapter 3'
+        'Uses restricted perception in darkness and repeated failed movement attempts ("Nothing") to build claustrophobic tension',
+        'Balances nocturnal terror against flat, realistic domestic and school alienation'
       ],
       vulnerabilities: [],
-      causalIntegrityScore: '96%',
-      summary: 'Establishes Jonah Laurence’s baseline life, voice, and deferred ambitions while planting the first ominous threads.'
+      causalIntegrityScore: '97%',
+      summary: 'Establishes the twin pressures on Jonah’s life—the unseen nocturnal intrusion in his locked bedroom and the social corrosion of anonymous messages at school.'
+    }
+  },
+  {
+    id: 'ana_ledger_ch03',
+    chapterId: 'ledger_chapter_03_4562324',
+    chapterVersionTimestamp: 1792815663000,
+    analyzedAt: 1792816200000,
+    isStale: false,
+    provenance: 'derived_analysis',
+    modelIdentifier: 'Canonical Seed Extraction (Verified against Ledger Ch. 3)',
+    events: [
+      {
+        id: 'evt_ch3_01',
+        chapterId: 'ledger_chapter_03_4562324',
+        sequenceIndex: 1,
+        title: 'Morning Mirror Routine, Sunrise Memory & Walk with Daniel',
+        summary: 'Waking at 6:11 AM, Jonah repeats his mirror judgment ("Ugly. ... Not ugly. ... Average."), hears his mother recall how six-year-old Jonah used to wake at 5:00 AM with his blanket to watch the sunrise ("You’re welcome, Jonah Laurence"), and banters with Daniel ("You’re four minutes late." / "Then you’re four minutes early.").',
+        sceneLocation: 'Laurence Home & Street to School',
+        chronologyType: 'linear',
+        storyTimeEstimate: '6:11 AM – Morning',
+        charactersPresent: ['Jonah Laurence', 'Jonah’s Mother', 'Daniel'],
+        decisionPoints: ['Reflects on versions of himself that exist only in his mother’s memory'],
+        directConsequences: ['Seeds the core sensory memories that return during the collision at the end of the chapter'],
+        causalPredecessors: [],
+        epistemicStatus: 'explicit_text',
+        supportingPassageExcerpt: '“You used to drag your blanket into the living room and sit by the window.” I stared at her. “I don’t remember that.” “I do.”'
+      },
+      {
+        id: 'evt_ch3_02',
+        chapterId: 'ledger_chapter_03_4562324',
+        sequenceIndex: 2,
+        title: 'Notebook Mismatch & Typing "Things I need to fix"',
+        summary: 'After snapping at a female classmate who returns his forgotten notebook ("You don’t have to do that... Feel sorry for me") and realizing she was only being considerate, Jonah resolves to change through discipline and types "Things I need to fix" in his phone Notes app—followed immediately by "You looked happy today. / Enjoy it while you can." from an unknown number.',
+        sceneLocation: 'School Corridor & Jonah’s Bedroom',
+        chronologyType: 'linear',
+        storyTimeEstimate: 'Afternoon – Evening',
+        charactersPresent: ['Jonah Laurence', 'Unnamed Classmate with Notebook'],
+        decisionPoints: ['Recognizes his habit of assuming hostility without evidence', 'Writes 11-item self-improvement list in his phone Notes app for "Tomorrow"'],
+        directConsequences: ['Makes his phone the vessel of his promised future ("Tomorrow")'],
+        causalPredecessors: ['evt_ch3_01'],
+        epistemicStatus: 'explicit_text',
+        supportingPassageExcerpt: 'Then I opened my notes app. I typed: Things I need to fix.'
+      },
+      {
+        id: 'evt_ch3_03',
+        chapterId: 'ledger_chapter_03_4562324',
+        sequenceIndex: 3,
+        title: 'Phone Theft Pursuit, Abnormal Downpour & Fatal Collision',
+        summary: 'Walking home the next afternoon, a thief slams into Jonah’s shoulder and snatches his blue-cased phone; Jonah chases him as sudden rain swallows the clear afternoon and an impossibly massive black vehicle ("It towered over the street. The thing seemed to stretch backward into the rain forever") strikes him.',
+        sceneLocation: 'Roadway on Walk Home',
+        chronologyType: 'linear',
+        storyTimeEstimate: 'Next Afternoon (Thursday)',
+        charactersPresent: ['Jonah Laurence', 'Phone Thief'],
+        decisionPoints: ['Sprints after the thief to recover his phone and his "Things I need to fix" list'],
+        directConsequences: ['Fatal trauma, fragmented memory montage, and transition into the cosmic void of Chapter 4'],
+        causalPredecessors: ['evt_ch3_02'],
+        epistemicStatus: 'explicit_text',
+        supportingPassageExcerpt: 'My phone. That was all I cared about... Everything was on that thing. Pictures. Messages. Notes. Accounts. My stupid schedule. The list. Tomorrow.'
+      }
+    ],
+    causalEdges: [
+      {
+        id: 'edge_ch3_1',
+        sourceEventId: 'evt_ch3_02',
+        targetEventId: 'evt_ch3_03',
+        edgeType: 'direct_causation',
+        epistemicStatus: 'explicit_text',
+        rationale: 'Because Jonah invested his hope for change ("Tomorrow") into the Notes list on his phone the night before, he refuses to let the thief escape with it, running headlong into the collision.',
+        supportingPassageExcerpt: 'My stupid schedule. The list. Tomorrow. I could see the blue case. Mine.'
+      }
+    ],
+    characterKnowledge: [
+      {
+        characterName: 'Jonah Laurence',
+        roleOrIdentityNote: 'Protagonist (17 years old)',
+        knows: [
+          'He misjudged the girl who returned his notebook because he projected his own embarrassment onto her',
+          'His phone holds his "Things I need to fix" list',
+          'The afternoon sky turned from clear sun to torrential rain in seconds during the chase, and the black vehicle was impossibly large'
+        ],
+        suspects: [],
+        believesFalsely: [
+          'If he controls everything he can control, tomorrow is guaranteed ("I believed there would be a tomorrow")'
+        ],
+        unawareOf: [
+          'Why the weather changed instantaneously or what the towering black vehicle actually was'
+        ],
+        evidencePassage: 'I believed there would be a tomorrow. Then— nothing.'
+      }
+    ],
+    setupsAndPayoffs: [
+      {
+        setup: 'Mother’s kitchen memory of six-year-old Jonah watching the sunrise and her phrase "You’re welcome, Jonah Laurence", plus Daniel’s "four minutes late / four minutes early" banter (Ch. 3)',
+        payoff: 'All three return in fragmented collage as Jonah lies dying in the rain after the collision at the end of Chapter 3.',
+        status: 'paid_off',
+        passageRef: 'Mom. The kitchen. A cup on the table. Eat. Daniel. You’re four minutes late. No. Four minutes early.',
+        targetChapterRef: 'ledger_chapter_03_4562324'
+      }
+    ],
+    continuityFindings: [
+      {
+        id: 'cf_ch3_01',
+        severity: 'verified_continuity',
+        description: 'The motif "Tomorrow" and the mirror self-assessment ("Ugly / Not ugly / Average") established in Chapters 2–3 transform directly in Chapter 5 when Jonah confronts Ira Lowe’s reflection in the mirror and reclaims "Tomorrow" as a second chance.',
+        affectedChaptersOrEvents: ['ledger_chapter_02_7b063d9', 'ledger_chapter_03_4562324', 'ledger_chapter_05_623acd3'],
+        epistemicStatus: 'explicit_text',
+        passageReference: 'Tomorrow. I’d figure it out tomorrow. I had to.'
+      }
+    ],
+    identifiedTechniques: [],
+    overallNarrativeAssessment: {
+      strengths: [
+        'Profound psychological observation in the classroom and notebook scenes ("I didn’t actually know what anyone thought. I knew what I imagined they thought")',
+        'Devastating structural payoff in the dying montage where every ordinary morning detail returns under the refrain of "Tomorrow"'
+      ],
+      vulnerabilities: [],
+      causalIntegrityScore: '99%',
+      summary: 'Brings Jonah Laurence’s original life to a tragic, tightly unified climax where his newly written self-improvement list directly drives the pursuit into the collision.'
     }
   },
   {
@@ -360,7 +467,7 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
         chapterId: 'ledger_chapter_06_c914b6a',
         sequenceIndex: 1,
         title: 'Exam Day Morning Preparation in Ira’s Apartment',
-        summary: 'Waking at 6:30 AM in early spring 2005, Jonah/Ira ties back his long black-and-teal hair, brews drip coffee, checks Applicant Slip and 11,000 yen, and dresses in a charcoal wool duffel coat.',
+        summary: 'Waking at 6:30 AM in early spring 2005, Jonah/Ira ties back his long black-and-teal hair, brews drip coffee, checks his Kuoh Academy application slip, 11,000 yen, and dead silver Panasonic flip phone, and dresses in a charcoal wool duffel coat.',
         sceneLocation: 'Ira Lowe’s Third-Floor Apartment',
         chronologyType: 'linear',
         storyTimeEstimate: '6:30 AM – 7:15 AM',
@@ -382,7 +489,7 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
         storyTimeEstimate: '7:35 AM',
         charactersPresent: ['Ira Lowe (Jonah Laurence)', 'Commuter Woman in Camel Coat'],
         decisionPoints: ['Tries to drop vocal pitch half an octave, fails, and accepts the encouragement silently'],
-        directConsequences: ['Reinforces awareness of how his new appearance alters social treatment ("I am officially non-threatening")'],
+        directConsequences: ['Reinforces awareness of how his new appearance alters social treatment ("I am officially non-threatening. I am an ornament.")'],
         causalPredecessors: ['evt_ch6_01'],
         epistemicStatus: 'explicit_text',
         supportingPassageExcerpt: '"Don’t be nervous. With a face like that, the interviewers will probably pass you before you even sit down."'
@@ -408,12 +515,12 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
         chapterId: 'ledger_chapter_06_c914b6a',
         sequenceIndex: 4,
         title: 'Registration as Applicant No. 1044 & The Corridor Shadow Anomaly',
-        summary: 'Ira registers at the West Hall baize table ("Overseas transfer track / Independent curriculum"), receives placard 1044, and inside the main corridor witnesses a tall, spectacled, violet-eyed student council figure whose shadow stretches 5–6 inches past the window geometry.',
+        summary: 'Ira registers at the West Hall baize table ("Overseas transfer track?" / "Independent curriculum. Everything is in the dossier."), receives placard 1044, and inside the main corridor witnesses a tall, spectacled, violet-eyed student council figure whose shadow stretches 5–6 inches past the window geometry.',
         sceneLocation: 'Kuoh Academy Courtyard & Main Hall Corridor',
         chronologyType: 'linear',
         storyTimeEstimate: '8:35 AM – 9:00 AM',
         charactersPresent: ['Ira Lowe (Jonah Laurence)', 'Registration Teacher', 'Violet-Eyed Student Council Figure'],
-        decisionPoints: ['Deflects teacher’s curiosity with "Everything is in the dossier"', 'Dismisses the elongated shadow to focus on passing the exam in Room 301'],
+        decisionPoints: ['Answers teacher with "Everything is in the dossier"', 'Dismisses the elongated shadow as a trick of leaded glass to focus on passing the exam in Room 301'],
         directConsequences: ['Takes seat 44 in Room 301 as the 9:00 AM bell begins the examination (Ch. 7)'],
         causalPredecessors: ['evt_ch6_03'],
         epistemicStatus: 'explicit_text',
@@ -453,10 +560,10 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
           'The tall, violet-eyed girl in the corridor wields institutional authority even over adult faculty'
         ],
         believesFalsely: [
-          'The 5–6 inch shadow extension on the oak parquetry was merely a trick of the leaded glass and morning glare'
+          'The 5–6 inch shadow extension on the oak parquetry was merely a trick of the double-paned leaded glass and morning glare'
         ],
         unawareOf: [
-          'The true identity of the violet-eyed student council figure (Sona Sitri / Devils of Kuoh)',
+          'Who the violet-eyed student council figure is or why her shadow stretched abnormally',
           'Who assembled his "Overseas transfer / Independent curriculum" dossier'
         ],
         evidencePassage: 'A trick of the double-paned leaded glass and the morning glare.'
@@ -465,14 +572,14 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
     setupsAndPayoffs: [
       {
         setup: 'Ira tells the registration teacher "Everything is in the dossier" to explain his "Independent curriculum" background (Ch. 6)',
-        payoff: 'In Chapter 8, Ira realizes that while that phrase satisfied a busy administrator, it will collapse in personal conversation—prompting him to investigate the dossier’s issuing association.',
+        payoff: 'In Chapter 8, Ira realizes that while that phrase satisfied a busy administrator, it cannot sustain real conversation—prompting him to investigate the dossier’s issuing association.',
         status: 'paid_off',
         passageRef: 'At the academy, I had managed it by saying that everything was in the dossier... It did not mean I could live inside the explanation indefinitely.',
         targetChapterRef: 'ledger_chapter_08_f9fb939'
       },
       {
         setup: 'The violet-eyed student council figure orders the registry closed at 8:45 AM and casts an anomalously dense, elongated shadow (Ch. 6)',
-        payoff: 'First concrete physical trace of Kuoh Academy’s supernatural governance.',
+        payoff: 'Preserved as an uncertain perceptual clue of Kuoh Academy’s deeper nature.',
         status: 'setup_only',
         passageRef: 'Behind her glasses, her eyes were a dark, deep violet.'
       }
@@ -491,11 +598,11 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
     overallNarrativeAssessment: {
       strengths: [
         'Rich 2005 Japanese sensory grounding (nikuman steam, magnetic paper tickets, parquetry wax)',
-        'Masterful restraint in introducing the violet-eyed student council figure purely through spatial deference and a half-second shadow anomaly'
+        'Restraint in introducing the violet-eyed student council figure through spatial deference and a half-second shadow anomaly'
       ],
       vulnerabilities: [],
       causalIntegrityScore: '98%',
-      summary: 'Anchors the Kuoh setting in tangible 2005 reality while planting the first subtle supernatural visual cue.'
+      summary: 'Anchors the Kuoh setting in tangible 2005 reality while planting the first subtle perceptual anomaly inside the academy.'
     }
   },
   {
@@ -611,19 +718,26 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
           'Pre-scripting answers for imaginary interrogations causes him to misfire in ordinary conversations'
         ],
         suspects: [
-          'Someone or some organization deliberately assembled the "Ira Lowe" identity and paperwork before he woke up on the hill'
+          'Someone or some organization assembled the "Ira Lowe" paperwork before he arrived, though he refuses to assume whether it is fraudulent or legitimate without checking'
         ],
         believesFalsely: [],
         unawareOf: [
-          'Whether the Kanagawa Prefectural Educational Development Association annex is a real municipal office, a front, or an abandoned address'
+          'Whether the Kanagawa Prefectural Educational Development Association annex exists at the listed Minami-Kuoh address'
         ],
         evidencePassage: 'I could not assume the paperwork was fraudulent just because I did not understand it. I could not assume it was legitimate just because it had carried me through registration.'
       }
     ],
     setupsAndPayoffs: [
       {
+        setup: 'Final sentence of Chapter 7 ("For the first time since morning, I had nothing I needed to do.") repeated verbatim as the opening sentence of Chapter 8',
+        payoff: 'Transforms post-exam relief at the end of Chapter 7 into the uneasy stillness of waiting and biographical scrutiny in Chapter 8.',
+        status: 'paid_off',
+        passageRef: 'For the first time since morning, I had nothing I needed to do.',
+        targetChapterRef: 'ledger_chapter_08_f9fb939'
+      },
+      {
         setup: 'Discovery of the "Kanagawa Prefectural Educational Development Association" (Minami-Kuoh administrative annex) on the dossier contact line (Ch. 8)',
-        payoff: 'Target of Ira’s library directory verification and physical reconnaissance in Chapter 9+.',
+        payoff: 'Target of Ira’s library directory verification and physical reconnaissance next morning.',
         status: 'setup_only',
         passageRef: 'Tomorrow, I would find out whether that address existed.'
       }
@@ -632,7 +746,7 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
       {
         id: 'cf_ch8_01',
         severity: 'soft_discrepancy',
-        description: 'Chapter 8 Title Variants: Authoritative Ledger file `chapter_08_the_architecture_of_waiting.md` uses the title "Chapter 8 — The Architecture of Waiting", while external notes have also referred to it as "The Logistics of Waiting".',
+        description: 'Chapter 8 Title Variants: Authoritative Ledger file `chapter_08_the_architecture_of_waiting.md` uses the title "Chapter 8 — The Architecture of Waiting", while external planning notes have also referred to it as "The Logistics of Waiting".',
         affectedChaptersOrEvents: ['ledger_chapter_08_f9fb939'],
         epistemicStatus: 'explicit_text',
         passageReference: 'Chapter 8 / The Architecture of Waiting',
@@ -658,74 +772,79 @@ export const INITIAL_INVESTIGATIONS: InvestigationQuestion[] = [
     title: 'Who assembled the "Ira Lowe" identity and the Minami-Kuoh dossier?',
     category: 'character_identity',
     status: 'investigating',
-    summary: 'When Jonah Laurence woke up in Chapter 4–5, the apartment, wallet ID ("Ira Lowe, age 16"), 11,000 yen, and Kuoh Academy application under "Overseas Transfer / Independent Curriculum" were already prepared. In Chapter 8, Ira traces the contact line to an administrative annex in Minami-Kuoh under the "Kanagawa Prefectural Educational Development Association."',
+    summary: 'When Jonah Laurence woke up in Chapters 4–5, the apartment, wallet ID ("Ira Lowe, age 16"), 11,000 yen, and Kuoh Academy application under "Overseas Transfer / Independent Curriculum" were already prepared. In Chapter 8, Ira traces the contact line to an administrative annex in Minami-Kuoh under the "Kanagawa Prefectural Educational Development Association."',
     competingHypotheses: [
       {
         id: 'hyp_dossier_1',
-        statement: 'Institutional / Supernatural Cover Agency: The Kanagawa Prefectural Educational Development Association annex is a bureaucratic front maintained to insert displaced or artificial individuals into Kuoh without raising municipal alarms.',
+        statement: 'Institutional / Supernatural Cover Agency: The Kanagawa Prefectural Educational Development Association annex is an administrative front used to insert displaced or unrecorded individuals into Kuoh with plausible paperwork.',
         epistemicStatus: 'hypothesis',
         supportingEvidence: [
           {
             chapterId: 'ledger_chapter_08_f9fb939',
             excerpt: 'An educational history had been assembled for me under the heading Overseas Transfer / Independent Curriculum. The words sat there with the confident, impersonal neatness of an answer that had already survived someone else’s scrutiny.',
-            note: 'The paperwork was engineered specifically to satisfy school registration scrutiny.'
+            note: 'The paperwork was engineered specifically to satisfy institutional registration scrutiny while omitting personal life details.'
           },
           {
             chapterId: 'ledger_chapter_04_6337972',
             excerpt: 'There were no answers resting on the counter. No driver’s license left out, no mail stacked with a name and an address, no framed family photos smiling from the wall.',
-            note: 'The apartment contains functional supplies and textbooks, but zero personal history or family photographs.'
+            note: 'The apartment contains functional clothes, textbooks, and money, but zero family photographs or personal correspondence.'
           }
         ],
-        counterEvidence: 'The Kuoh registration teacher in Chapter 6 reacted with slight caution rather than instant recognition, suggesting Kuoh’s front-desk staff are not directly briefed on Ira.'
+        counterEvidence: 'The Kuoh registration teacher in Chapter 6 paused in confusion at Ira’s appearance vs. his male gender marker and asked "Overseas transfer track?" cautiously, indicating front-line staff were not pre-briefed.'
       },
       {
         id: 'hyp_dossier_2',
-        statement: 'Pre-Existing Inhabitant ("Original Ira Lowe"): Ira Lowe was an actual sixteen-year-old resident whose life was interrupted moments before Jonah woke up on the grassy hill in Chapter 4.',
+        statement: 'Pre-Existing Inhabitant ("Original Ira Lowe"): Ira Lowe lived in the apartment prior to Chapter 4, leaving behind his procedural muscle memory, kanji handwriting, and an interrupted routine (dried ring in the mug, jacket on the chair).',
         epistemicStatus: 'hypothesis',
         supportingEvidence: [
           {
             chapterId: 'ledger_chapter_04_6337972',
             excerpt: 'A ceramic mug sat near the sink with a thin ring dried at the bottom. A jacket hung over the back of a kitchen chair... the casual disarray of a life temporarily stepped away from.',
-            note: 'Physical traces in the apartment suggest someone had been actively living there prior to Chapter 4.'
+            note: 'Physical traces in the apartment show an interrupted routine rather than a sterile staging room.'
           },
           {
             chapterId: 'ledger_chapter_07_24ac432',
             excerpt: 'My hand simply knew where the strokes went and how much pressure to use. Jonah knew what the sounds meant. The hand belonged to Ira.',
-            note: 'The body possesses deeply ingrained procedural literacy and tactical sightline habits.'
+            note: 'The body possesses deeply ingrained procedural literacy and autonomous sightline-scanning habits (Ch. 4).'
           }
         ]
       }
     ],
-    linkedChapterIds: ['ledger_chapter_04_6337972', 'ledger_chapter_05_623acd3', 'ledger_chapter_06_c914b6a', 'ledger_chapter_08_f9fb939'],
+    linkedChapterIds: ['ledger_chapter_04_6337972', 'ledger_chapter_05_623acd3', 'ledger_chapter_06_c914b6a', 'ledger_chapter_07_24ac432', 'ledger_chapter_08_f9fb939'],
     linkedTechniquePackIds: [],
     updatedAt: 1792817000000
   },
   {
     id: 'inv_stalker_and_impact',
-    title: 'Connection between the 12:42 AM stalker texts, the 3:17 AM entity, and the Chapter 3 collision',
+    title: 'Connection between the Chapter 1 bedroom entity, the unknown-number texts, and the Chapter 3 collision',
     category: 'causal_gap',
     status: 'open',
-    summary: 'In Chapters 1–2, Jonah receives targeted texts from unknown numbers ("You should watch your back", "You looked happy today. Enjoy it while you can"), experiences a 3:17 AM entity scraping his floorboards, suffers an anonymous screenshot leak, and in Chapter 3 is lured into the rain by a phone thief directly into the path of an impossibly huge black vehicle.',
+    summary: 'In Chapter 1, Jonah experiences two sleep-paralysis intrusions (at 3:17 AM with an abnormally bending pale finger, and after 12:42 AM with a voice whispering "Jonah") alongside texts from an unknown number ("You awake?", "You should watch your back"). In Chapters 2 and 3, an unknown number sends "You looked happy today. / Enjoy it while you can.", and in Chapter 3 a phone theft pulls Jonah into sudden rain and the path of an impossibly huge black vehicle.',
     competingHypotheses: [
       {
         id: 'hyp_stalker_1',
-        statement: 'Coordinated Orchestration: The screenshot leak, phone theft, and anomalous black vehicle ("The thing seemed to stretch backward into the rain forever") were part of a single engineered sequence to sever Jonah from his world.',
-        epistemicStatus: 'inferred',
+        statement: 'Uncanny Convergence vs. Separate Layers: The text deliberately leaves open whether the school screenshot harassment, the unknown-number messages, the bedroom entity, and the sudden rain/black vehicle are separate human and anomalous pressures or a single coordinated severance.',
+        epistemicStatus: 'unresolved_question',
         supportingEvidence: [
           {
-            chapterId: 'ledger_chapter_02_b8b8cd6',
-            excerpt: 'Unknown Number: You looked happy today. Enjoy it while you can.',
-            note: 'Demonstrates active real-time observation of Jonah at school prior to the screenshot leak.'
+            chapterId: 'ledger_chapter_01_7720d50',
+            excerpt: 'Then, very close to his bed, something whispered his name. “Jonah.” His eyes widened. And this time, he knew the voice wasn’t his mother’s.',
+            note: 'Establishes a non-ordinary presence in his locked bedroom during a power outage.'
           },
           {
-            chapterId: 'ledger_chapter_03_013bf32',
+            chapterId: 'ledger_chapter_02_7b063d9',
+            excerpt: 'Unknown number. For a second I didn’t open it. Then I did. You looked happy today. I stared at it. Another message arrived. Enjoy it while you can.',
+            note: 'Identical message pair appears in both Chapter 2 and Chapter 3 evening scenes.'
+          },
+          {
+            chapterId: 'ledger_chapter_03_4562324',
             excerpt: 'My brain couldn’t make sense of the size. It towered over the street. The thing seemed to stretch backward into the rain forever. The road looked tiny beneath it. Wrong. Everything about it was wrong.',
-            note: 'The vehicle’s geometry violates normal vehicular scale right before impact.'
+            note: 'The sudden storm and the vehicle’s impossible scale break ordinary physical expectations right before death.'
           }
         ]
       }
     ],
-    linkedChapterIds: ['ledger_chapter_01_7720d50', 'ledger_chapter_02_b8b8cd6', 'ledger_chapter_03_013bf32'],
+    linkedChapterIds: ['ledger_chapter_01_7720d50', 'ledger_chapter_02_7b063d9', 'ledger_chapter_03_4562324'],
     linkedTechniquePackIds: [],
     updatedAt: 1792816800000
   },
@@ -738,7 +857,7 @@ export const INITIAL_INVESTIGATIONS: InvestigationQuestion[] = [
     competingHypotheses: [
       {
         id: 'hyp_title_1',
-        statement: 'Authoritative Ledger Precedence: "The Architecture of Waiting" is the canonical title in `idesmond11p7/The-Ledger`, while "The Logistics of Waiting" was a working/planning variant.',
+        statement: 'Authoritative Ledger Precedence: "The Architecture of Waiting" is the canonical title in `idesmond11p7/The-Ledger`, while "The Logistics of Waiting" is preserved as the user’s working title for the planned redo.',
         epistemicStatus: 'explicit_text',
         supportingEvidence: [
           {

@@ -963,7 +963,7 @@ function OverviewSection({
 
             <div className="space-y-2.5">
               {state.techniquePacks.slice(0, 3).map((pack) => {
-                const activeVersion = pack.versions[0];
+                const activeVersion = pack.versions[pack.currentVersion];
                 const stepCount = activeVersion?.componentB.mechanismSteps?.length || 0;
                 const checkCount = activeVersion?.componentE.evaluationTests.length || 0;
                 return (
