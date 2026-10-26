@@ -25,6 +25,11 @@ export function compileTechniquePacks(
     compiledInstructionsText += `========================================================\n`;
     compiledInstructionsText += `TECHNIQUE PACK: ${pack.name} [ID: ${pack.id}] (Version: ${versionNumber})\n`;
     compiledInstructionsText += `Category: ${pack.category.toUpperCase()}\n`;
+    if (pack.provenance === 'ledger_source_draft') {
+      compiledInstructionsText += `SOURCE STATUS: ${pack.sourceStatus || 'unspecified'} (Ledger draft; not user-approved canon or final methodology)\n`;
+      compiledInstructionsText += `SOURCE: ${pack.sourceRepository || 'unknown repository'} / ${pack.sourcePath || 'unknown path'}\n`;
+      compiledInstructionsText += `SOURCE BLOB SHA: ${pack.sourceBlobSha || 'unavailable'}\n`;
+    }
     compiledInstructionsText += `========================================================\n\n`;
 
     // Component A: Formal Model
@@ -66,6 +71,11 @@ export function compileTechniquePacks(
     versionData.componentE.evaluationTests.forEach((test) => {
       compiledInstructionsText += `- Audit Check: ${test}\n`;
     });
+
+    if (pack.provenance === 'ledger_source_draft' && pack.sourceMarkdown) {
+      compiledInstructionsText += `[VERBATIM LEDGER SOURCE DOCUMENT — PRESERVE ITS QUALIFIERS]\n`;
+      compiledInstructionsText += pack.sourceMarkdown + `\n\n`;
+    }
 
     compiledInstructionsText += `\n`;
   });
