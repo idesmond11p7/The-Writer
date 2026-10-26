@@ -335,15 +335,7 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
         passageReference: 'You’re four minutes late. No. Four minutes early. Whatever.'
       }
     ],
-    identifiedTechniques: [
-      {
-        techniqueName: 'Somatic & Perceptual Fracture',
-        techniquePackId: 'tp_sensory_fracture',
-        confidence: 'high_evidence',
-        supportingPassage: 'Right where the closet met the wall, the shadows were too thick. They didn’t blend into the rest of the dark the way they were supposed to.',
-        analysis: 'Uses shadow geometry and acoustic friction during sleep paralysis without introducing supernatural terminology.'
-      }
-    ],
+    identifiedTechniques: [],
     overallNarrativeAssessment: {
       strengths: [
         'Seamless contrast between 3:17 AM nocturnal dread and warm, grounded suburban morning banter',
@@ -495,22 +487,7 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
         passageReference: 'Applicant No. 1044. Third floor, North Hall, Room 301.'
       }
     ],
-    identifiedTechniques: [
-      {
-        techniqueName: 'Somatic & Perceptual Fracture',
-        techniquePackId: 'tp_sensory_fracture',
-        confidence: 'high_evidence',
-        supportingPassage: 'For half a heartbeat, the dark shape cast by her hem and shoulders reached five or six inches past where the geometry of the window mullions should have allowed',
-        analysis: 'Exemplary geometric micro-anomaly followed by rational dismissal.'
-      },
-      {
-        techniqueName: 'Dual-Inhabitance Somatic vs. Episodic Split',
-        techniquePackId: 'tp_somatic_cognitive_duality',
-        confidence: 'high_evidence',
-        supportingPassage: 'Ira’s legs were shorter than Jonah’s by maybe two inches, but his center of gravity was lower, cleaner. I didn’t clomp.',
-        analysis: 'Tracks concrete biomechanical and social-perception differences between Jonah’s 17-year habits and Ira’s 16-year-old frame.'
-      }
-    ],
+    identifiedTechniques: [],
     overallNarrativeAssessment: {
       strengths: [
         'Rich 2005 Japanese sensory grounding (nikuman steam, magnetic paper tickets, parquetry wax)',
@@ -662,15 +639,7 @@ export const INITIAL_ANALYSES: ChapterAnalysis[] = [
         recommendedResolution: 'Retain authoritative Ledger title in canonical snapshot; preserve variant note in workspace metadata.'
       }
     ],
-    identifiedTechniques: [
-      {
-        techniqueName: 'Over-Preparation & Conversational Mismatch',
-        techniquePackId: 'tp_epistemic_irony',
-        confidence: 'high_evidence',
-        supportingPassage: 'The problem was not that I had failed to think of an answer. I had thought of too many answers, all for questions that had not been asked.',
-        analysis: 'Tests the protagonist’s defensive rule in a mundane café scene and uses its failure to drive the plot toward concrete investigation.'
-      }
-    ],
+    identifiedTechniques: [],
     overallNarrativeAssessment: {
       strengths: [
         'Exceptional psychological honesty in dissecting how trauma/displacement breeds rigid, self-defeating rules',
@@ -728,7 +697,7 @@ export const INITIAL_INVESTIGATIONS: InvestigationQuestion[] = [
       }
     ],
     linkedChapterIds: ['ledger_chapter_04_6337972', 'ledger_chapter_05_623acd3', 'ledger_chapter_06_c914b6a', 'ledger_chapter_08_f9fb939'],
-    linkedTechniquePackIds: ['tp_somatic_cognitive_duality', 'tp_epistemic_irony'],
+    linkedTechniquePackIds: [],
     updatedAt: 1792817000000
   },
   {
@@ -757,7 +726,7 @@ export const INITIAL_INVESTIGATIONS: InvestigationQuestion[] = [
       }
     ],
     linkedChapterIds: ['ledger_chapter_01_7720d50', 'ledger_chapter_02_b8b8cd6', 'ledger_chapter_03_013bf32'],
-    linkedTechniquePackIds: ['tp_sensory_fracture', 'tp_causal_compression'],
+    linkedTechniquePackIds: [],
     updatedAt: 1792816800000
   },
   {
@@ -819,64 +788,8 @@ export const INITIAL_PINNED_ITEMS: PinnedWorkingItem[] = [
   }
 ];
 
-export const INITIAL_EVALUATIONS: EvaluationRecord[] = [
-  {
-    id: 'eval_seed_ch08',
-    timestamp: 1792817300000,
-    chapterId: 'ledger_chapter_08_f9fb939',
-    revisionId: 'rev_ledger_chapter_08_f9fb939',
-    techniquePackIdsUsed: ['tp_epistemic_irony', 'tp_somatic_cognitive_duality'],
-    evaluatorType: 'human_audit',
-    modelId: 'Canonical Benchmark Audit',
-    results: [
-      {
-        criterionId: 'crit_obj',
-        criterionName: 'Objective & Constraint Compliance',
-        score: 5,
-        evidenceExcerpt: 'Tomorrow, I would start at the library. I would check the directory, verify the name, and find out whether the office was where the documents claimed it was.',
-        findings: 'Converts post-exam existential quiet into a concrete, falsifiable investigative plan for Chapter 9.',
-        passFail: 'pass'
-      },
-      {
-        criterionId: 'crit_tech',
-        criterionName: 'Technique Pack Adherence (Procedures & Rules)',
-        score: 5,
-        evidenceExcerpt: 'The problem was not that I had failed to think of an answer. I had thought of too many answers, all for questions that had not been asked.',
-        findings: 'Executes the Over-Preparation & Conversational Mismatch technique with clinical precision across two contrasting café interactions.',
-        passFail: 'pass'
-      },
-      {
-        criterionId: 'crit_causal',
-        criterionName: 'Causal Coherence & Narrative Logic',
-        score: 5,
-        evidenceExcerpt: 'If I wanted to stop being caught off guard, I needed to know what the documents actually said and who had issued them.',
-        findings: 'Every internal realization is causally triggered by a concrete interaction in the café rather than unmotivated introspection.',
-        passFail: 'pass'
-      },
-      {
-        criterionId: 'crit_char',
-        criterionName: 'Character Voice & Psychological Realism',
-        score: 5,
-        evidenceExcerpt: 'It was an unfair rule. If I failed to predict something, I could blame myself for not thinking hard enough.',
-        findings: 'Preserves Jonah’s grounded, self-aware voice while honoring the social vulnerability of inhabiting a sixteen-year-old stranger’s life.',
-        passFail: 'pass'
-      },
-      {
-        criterionId: 'crit_cont',
-        criterionName: 'Factual Continuity with Ur-Verse Canon',
-        score: 5,
-        evidenceExcerpt: 'The blue examination placard marked 1044 lay on top of the other papers... I put the dead silver Panasonic flip phone in my pocket out of habit.',
-        findings: 'Maintains 100% continuity with Chapters 5, 6, and 7 (Applicant 1044, dead silver Panasonic flip phone, Overseas Transfer / Independent Curriculum dossier).',
-        passFail: 'pass'
-      }
-    ],
-    overallSummary: 'Chapter 8 ("The Architecture of Waiting") serves as a benchmark of psychological and investigative realism, bridging the completion of the Kuoh Academy entrance examination with the Minami-Kuoh dossier investigation.',
-    identifiedDeviations: [],
-    recommendations: [
-      'When drafting Chapter 9, maintain the methodological discipline established at the end of Chapter 8: verify the Minami-Kuoh annex via municipal/library directories before physical approach.'
-    ]
-  }
-];
+// No synthetic benchmark evaluations are seeded. Evaluations must be created from actual reviewed runs.
+export const INITIAL_EVALUATIONS: EvaluationRecord[] = [];
 
 export const INITIAL_CHAPTERS: ChapterDraft[] = INITIAL_LEDGER_CHAPTER_DRAFTS;
 
