@@ -164,6 +164,13 @@ export interface TechniquePack {
   applicationRecords?: TechniqueApplicationRecord[];
   createdAt: number;
   updatedAt: number;
+  // Present only for imported Ledger source records; these fields preserve traceability.
+  provenance?: 'ledger_source_draft' | 'local_working_pack';
+  sourceRepository?: string;
+  sourcePath?: string;
+  sourceBlobSha?: string;
+  sourceStatus?: string;
+  sourceMarkdown?: string;
 }
 
 export interface CompiledTechniqueInstruction {
