@@ -63,9 +63,15 @@ function migrateWorkspaceState(parsed: Partial<WorkspaceState>): WorkspaceState 
       : INITIAL_WORKSPACE_STATE.schemesOfWork;
 
   // Filter out legacy fake analysis (ana_seed_01) and merge canonical analyses
-  const existingAnalyses = (parsed.analyses || []).filter(
-    (a) => a.id !== 'ana_seed_01' && a.chapterId !== 'chap_dxd_01'
-  );
+  const existingAnalyses = (parsed.analyses || [])
+    .filter((a) => a.id !== 'ana_seed_01' && a.chapterId !== 'chap_dxd_01')
+    .map((analysis) => ({
+      ...analysis,
+      // Remove technique annotations that depended on the fabricated legacy packs.
+      identifiedTechniques: (analysis.identifiedTechniques || []).filter(
+        (item) => !legacySeedTechniquePackIds.has(item.techniquePackId || '')
+      ),
+    }));
   const mergedAnalyses = [...existingAnalyses];
   INITIAL_WORKSPACE_STATE.analyses.forEach((seedAna) => {
     if (!mergedAnalyses.some((a) => a.chapterId === seedAna.chapterId)) {
@@ -75,7 +81,10 @@ function migrateWorkspaceState(parsed: Partial<WorkspaceState>): WorkspaceState 
 
   // Filter out legacy fake evaluations (eval_seed_01)
   const existingEvaluations = (parsed.evaluations || []).filter(
-    (e) => e.id !== 'eval_seed_01' && e.chapterId !== 'chap_dxd_01'
+    (e) =>
+      e.id !== 'eval_seed_01' &&
+      e.id !== 'eval_seed_ch08' &&
+      e.chapterId !== 'chap_dxd_01'
   );
   const mergedEvaluations =
     existingEvaluations.length > 0
@@ -105,7 +114,12 @@ function migrateWorkspaceState(parsed: Partial<WorkspaceState>): WorkspaceState 
     executionLogs: existingLogs,
     investigations:
       parsed.investigations && parsed.investigations.length > 0
-        ? parsed.investigations
+        ? parsed.investigations.map((question) => ({
+            ...question,
+            linkedTechniquePackIds: (question.linkedTechniquePackIds || []).filter(
+              (id) => !legacySeedTechniquePackIds.has(id)
+            ),
+          }))
         : INITIAL_WORKSPACE_STATE.investigations,
     pinnedItems:
       parsed.pinnedItems && parsed.pinnedItems.length > 0
