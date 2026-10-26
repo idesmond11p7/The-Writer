@@ -19,12 +19,37 @@ function migrateWorkspaceState(parsed: Partial<WorkspaceState>): WorkspaceState 
     chapters: filteredChapters,
   });
 
-  // Merge Technique Packs so new canonical versions & application records are present
-  const existingPacks = parsed.techniquePacks || [];
-  const mergedPacks = [...INITIAL_WORKSPACE_STATE.techniquePacks];
-  existingPacks.forEach((ep) => {
-    if (!mergedPacks.some((mp) => mp.id === ep.id)) {
-      mergedPacks.push(ep);
+  // Remove the four fabricated legacy seed packs. Ledger-backed packs replace them;
+  // user-authored local packs remain available.
+  const legacySeedTechniquePackIds = new Set([
+    'tp_sensory_fracture',
+    'tp_somatic_cognitive_duality',
+    'tp_causal_compression',
+    'tp_epistemic_irony',
+  ]);
+  const existingPacks = (parsed.techniquePacks || []).filter(
+    (pack) => !legacySeedTechniquePackIds.has(pack.id)
+  );
+  const existingPacksById = new Map(existingPacks.map((pack) => [pack.id, pack]));
+  const canonicalPacks = INITIAL_WORKSPACE_STATE.techniquePacks;
+  const mergedPacks = canonicalPacks.map((sourcePack) => {
+    const existing = existingPacksById.get(sourcePack.id);
+    if (!existing) return sourcePack;
+
+    // Keep local edits when the imported source hash is unchanged. If Ledger changed,
+    // advance the source version while retaining the user's previous versions as history.
+    if (existing.sourceBlobSha === sourcePack.sourceBlobSha) return existing;
+    return {
+      ...sourcePack,
+      versions: {
+        ...existing.versions,
+        ...sourcePack.versions,
+      },
+    };
+  });
+  existingPacks.forEach((pack) => {
+    if (!mergedPacks.some((canonical) => canonical.id === pack.id)) {
+      mergedPacks.push(pack);
     }
   });
 
