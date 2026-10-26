@@ -568,6 +568,23 @@ export default function TechniquePackStudio({
                 }
                 className="w-full bg-transparent text-xs text-stone-400 focus:text-stone-200 focus:outline-none"
               />
+              {activePack.provenance === 'ledger_source_draft' && (
+                <div className="mt-2 rounded border border-sky-900/70 bg-sky-950/20 p-3 space-y-1.5">
+                  <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono">
+                    <span className="text-sky-300 font-semibold">LEDGER SOURCE DRAFT</span>
+                    <span className="text-stone-400">Status: {activePack.sourceStatus || 'unspecified'}</span>
+                  </div>
+                  <div className="text-[10px] text-stone-300 break-all">
+                    {activePack.sourceRepository}/{activePack.sourcePath}
+                  </div>
+                  <div className="text-[10px] text-stone-500 break-all">
+                    Source blob SHA: {activePack.sourceBlobSha || 'unavailable'}
+                  </div>
+                  <p className="text-[10px] text-stone-400">
+                    Original Ledger Markdown is retained and included in compiled instructions. These records are drafts, not user-approved final methodology. Edit or fork locally without treating changes as edits to the Ledger source.
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Version & Quick Apply Controls */}
