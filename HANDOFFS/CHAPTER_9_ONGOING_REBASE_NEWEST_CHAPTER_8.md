@@ -95,3 +95,27 @@ Return one complete, self-contained response containing:
 7. A short statement of what you need to do next in the existing workstream.
 
 Do not draft Chapter 9 or create a new outline yet. This reassessment is the immediate task. The workstream remains ONGOING until the chapter is completed and independently audited.
+
+
+
+## 2026-11-01 — Circulator source-recovery update
+
+The author confirms that a newer completed Chapter 8 exists and that the Writer's previous assessment must be redone against it. Do not treat the absence of that manuscript from the currently inspected Ledger tree as proof that it does not exist.
+
+### Artifacts actually recovered and checked
+- Ledger `ledger/records/chapter/chapter_08_the_architecture_of_waiting.md`: 2026-10-24 ready version; dossier/investigation direction.
+- Ledger `ledger/records/chapter/chapter_08_architecture_of_waiting_redraft_20261026_v1.md`: 2026-10-26 draft; expanded prose but retains the dossier/investigation direction.
+- Ledger `ledger/records/supporting_doc/chapter_08_architecture_of_waiting_reconstruction_prompt_20261027_v1.md`: 2026-10-27 reconstruction prompt, not a completed manuscript. It describes a different direction involving Wednesday job-search activity, Kissa Minami, Kenji, and a Thursday delivery errand.
+- Library `Chapter_8_Draft_Source_Full.txt` and `Pasted text(3).txt`: older October 10 material. These are not the sought newer completed version.
+- Library `Pasted text(4).txt` (October 26): author brief for Chapter 9, including the 3–4-hour Kuoh traversal, errand, cat/forest boundary crossing, stalking entities, house, purple phenomenon, tooth necklace, and cliffhanger. This is a Chapter 9 brief, not Chapter 8 prose.
+- Lorekeeper's currently inspected repository contains the Observatory application and lore references; its Chapter 9 intake is a coordination record, not a completed Chapter 8 manuscript or chapter-documentation output.
+
+### Required action in the Writer session
+Search the Writer/AI Studio project's available files, attached source material, and prior working artifacts for the author-confirmed newer completed Chapter 8. Do not use obsolete phrase fragments as search keys. Do not substitute the October 27 prompt, October 10 Library text, a summary, or an analysis receipt for the manuscript.
+
+If the exact manuscript is available in the Writer workspace, identify its exact title, version/date, source, and status, read it in full, then complete every item in the Required output above. If it is not available, return the exact missing-source finding and request only that source; do not fabricate a reassessment.
+
+### Continuity caution
+The Chapter 9 errand bridge must be derived from the recovered current Chapter 8, not from the older draft or the reconstruction prompt alone. The Chapter 9 author brief is still active, but any detail not confirmed by the current Chapter 8 remains a design dependency.
+
+The workstream remains ONGOING. This update does not close the source gate or authorize Chapter 9 drafting.
