@@ -52,8 +52,10 @@ import ChapterIntelligence from '@/components/ChapterIntelligence';
 import EvaluationStudio from '@/components/EvaluationStudio';
 import AIUsageMetrics from '@/components/AIUsageMetrics';
 import LedgerBoundaryModal from '@/components/LedgerBoundaryModal';
+import Experiment01Showcase from '@/components/Experiment01Showcase';
 
 type SectionId =
+  | 'experiment01'
   | 'overview'
   | 'investigation'
   | 'writing'
@@ -71,6 +73,12 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
+  {
+    id: 'experiment01',
+    label: 'Experiment 01: 12 Packs',
+    icon: FlaskConical,
+    description: '2,200-word literary snippet, 12-pack map, evaluation & audit',
+  },
   {
     id: 'overview',
     label: 'Workstation Overview',
@@ -127,7 +135,7 @@ export default function WriterAppShell() {
     getWorkspaceSnapshot,
     getServerWorkspaceSnapshot
   );
-  const [activeSection, setActiveSection] = useState<SectionId>('overview');
+  const [activeSection, setActiveSection] = useState<SectionId>('experiment01');
   const [isLedgerModalOpen, setIsLedgerModalOpen] = useState<boolean>(false);
   const [isPinTrayExpanded, setIsPinTrayExpanded] = useState<boolean>(false);
 
@@ -625,6 +633,19 @@ export default function WriterAppShell() {
 
         {/* Dynamic Section Viewport */}
         <div className="flex-1 overflow-hidden flex flex-col">
+          {activeSection === 'experiment01' && (
+            <Experiment01Showcase
+              onSelectTechniquePack={(packId) => handleNavigateToTechnique(packId)}
+              onSendPassageToWorkbench={(passage, packId) =>
+                handleSendPassageToTechniqueWorkbench(
+                  passage,
+                  state.activeChapterId || state.chapters[0]?.id || '',
+                  packId
+                )
+              }
+            />
+          )}
+
           {activeSection === 'overview' && (
             <OverviewSection
               state={state}
@@ -792,6 +813,13 @@ function OverviewSection({
           </div>
           <div className="flex flex-wrap items-center gap-2.5">
             <button
+              onClick={() => onNavigate('experiment01')}
+              className="px-3.5 py-2 bg-amber-950/60 hover:bg-amber-900/60 border border-amber-500/50 text-amber-200 font-semibold rounded-lg text-xs font-mono transition-colors flex items-center gap-2"
+            >
+              <FlaskConical className="w-3.5 h-3.5 text-amber-400" />
+              <span>View Experiment 01 (12 Packs Under Load)</span>
+            </button>
+            <button
               onClick={() => onNavigate('investigation')}
               className="px-3.5 py-2 bg-stone-900 hover:bg-stone-800 border border-stone-700 text-stone-100 font-medium rounded-lg text-xs font-mono transition-colors flex items-center gap-2"
             >
@@ -802,7 +830,7 @@ function OverviewSection({
               onClick={() => onNavigate('techniques')}
               className="px-3.5 py-2 bg-stone-900 hover:bg-stone-800 border border-stone-700 text-stone-100 font-medium rounded-lg text-xs font-mono transition-colors flex items-center gap-2"
             >
-              <FlaskConical className="w-3.5 h-3.5 text-emerald-400" />
+              <Layers className="w-3.5 h-3.5 text-emerald-400" />
               <span>Technique Lab</span>
             </button>
             <button
