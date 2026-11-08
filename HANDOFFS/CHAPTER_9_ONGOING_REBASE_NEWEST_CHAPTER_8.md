@@ -119,3 +119,16 @@ If the exact manuscript is available in the Writer workspace, identify its exact
 The Chapter 9 errand bridge must be derived from the recovered current Chapter 8, not from the older draft or the reconstruction prompt alone. The Chapter 9 author brief is still active, but any detail not confirmed by the current Chapter 8 remains a design dependency.
 
 The workstream remains ONGOING. This update does not close the source gate or authorize Chapter 9 drafting.
+
+
+## 2026-11-08 — Chapter 9 published source registered
+
+The author supplied the current published Chapter 9 material and confirmed it is assistant-generated prose already published for now. Preserve it as published source, not as a draft awaiting a rewrite.
+
+Canonical source copy in this repository: `chapters/chapter_09_current_published_material_20261108.md`.
+Ledger record: `ledger/records/chapter/chapter_09_current_published_material_20261108.md`.
+The Writer chapter-library snapshot (`data/ledger-chapters.json`) registers Chapter 9 as chapterNumber 9 with status `published-current`.
+
+The supplied published text ends exactly at the word **“I”** after Ira reaches the abandoned house. Do not invent a continuation or overwrite this boundary. No continuity repair has been applied. The opening's Kenji / shoe-locker / framing-shop errand details are source facts about this published Chapter 9 text; their fit with the authoritative Chapter 8 must be checked against the actual Chapter 8 manuscript.
+
+The author's next requested task is a complete story-shaped reconstruction of Chapters 1–8, grounded in the actual manuscripts and their emotional and causal continuity. Do not generate Chapter 9 prose as part of this reassessment.
