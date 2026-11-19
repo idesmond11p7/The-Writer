@@ -39,7 +39,9 @@ import {
   FlaskConical,
   ShieldCheck,
   MessageSquarePlus,
+  Send,
 } from 'lucide-react';
+import ScribbleHubCopyModal from './ScribbleHubCopyModal';
 
 interface WritingWorkspaceProps {
   chapters: ChapterDraft[];
@@ -113,6 +115,8 @@ export default function WritingWorkspace({
 
   // Import chapter modal
   const [isImportChapterModalOpen, setIsImportChapterModalOpen] =
+    useState<boolean>(false);
+  const [isScribbleHubModalOpen, setIsScribbleHubModalOpen] =
     useState<boolean>(false);
   const [importChapterNumber, setImportChapterNumber] = useState<string>('9');
   const [importChapterTitle, setImportChapterTitle] = useState<string>('');
@@ -709,6 +713,15 @@ export default function WritingWorkspace({
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>AI Orchestrator</span>
+            </button>
+
+            <button
+              onClick={() => setIsScribbleHubModalOpen(true)}
+              className="px-2.5 py-1.5 rounded border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 hover:text-amber-200 text-xs font-mono flex items-center gap-1.5 transition-colors cursor-pointer"
+              title="Copy / Format for Scribble Hub"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>Scribble Hub</span>
             </button>
 
             <button
@@ -1428,6 +1441,15 @@ export default function WritingWorkspace({
           </div>
         </div>
       )}
+
+      {/* Scribble Hub Copy Suite Modal */}
+      <ScribbleHubCopyModal
+        isOpen={isScribbleHubModalOpen}
+        onClose={() => setIsScribbleHubModalOpen(false)}
+        title={title}
+        chapterNumber={chapterNumber}
+        content={content}
+      />
     </div>
   );
 }

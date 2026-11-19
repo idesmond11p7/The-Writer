@@ -29,8 +29,9 @@ function toChapterDraft(source: LedgerSnapshotChapter): ChapterDraft {
       : []),
   ].join(' ');
 
+  const blobSha = source.sourceBlobSha ? source.sourceBlobSha.slice(0, 7) : 'canon09';
   return {
-    id: `ledger_chapter_${String(source.chapterNumber).padStart(2, '0')}_${source.sourceBlobSha.slice(0, 7)}`,
+    id: `ledger_chapter_${String(source.chapterNumber).padStart(2, '0')}_${blobSha}`,
     title: source.title,
     chapterNumber: source.chapterNumber,
     provenance: 'ledger_authoritative',
@@ -58,40 +59,44 @@ export const INITIAL_LEDGER_CHAPTER_DRAFTS: ChapterDraft[] = snapshotChapters.ma
  */
 export function importLedgerChapterSnapshot(state: WorkspaceState): WorkspaceState {
   const existing = [...state.chapters];
-  const existingSourceIds = new Set(
-    existing.map((chapter) => chapter.sourceIdentifier).filter((value): value is string => Boolean(value))
+  const canonicalByNumber = new Map<string, ChapterDraft>(
+    INITIAL_LEDGER_CHAPTER_DRAFTS.map((chapter) => [String(chapter.chapterNumber), chapter])
   );
+  const replacedIds = new Map<string, string>();
+  const matchedCanonicalNumbers = new Set<string>();
 
-  const legacySeedIndex = existing.findIndex(
-    (chapter) =>
-      chapter.id === 'chap_dxd_01' &&
-      chapter.sourceIdentifier === 'LEDGER-REF-DXD-FW-001 (Pending Sync)'
-  );
-
-  if (legacySeedIndex >= 0) {
-    const legacy = existing[legacySeedIndex];
-    existing[legacySeedIndex] = {
-      ...legacy,
-      title: 'QUARANTINED: Unverified Writer Seed Example (not Ledger canon)',
-      chapterNumber: '1-example',
-      provenance: 'local_working_draft',
-      sourceIdentifier: 'QUARANTINED_WRITER_SEED_EXAMPLE: not present in Ledger',
-      notes: [
-        'Quarantined during canonical Ledger chapter import because this was generated seed content, not a verified Ledger chapter.',
-        legacy.notes,
-      ].filter(Boolean).join(' '),
-      activeTechniquePackIds: [],
-    };
-  }
+  const synchronizedExisting = existing.map((chapter) => {
+    if (chapter.provenance !== 'ledger_authoritative') {
+      return chapter;
+    }
+    const key = String(chapter.chapterNumber);
+    const canonical = canonicalByNumber.get(key);
+    if (!canonical) {
+      return chapter;
+    }
+    matchedCanonicalNumbers.add(key);
+    if (
+      chapter.sourceIdentifier !== canonical.sourceIdentifier ||
+      chapter.currentContent !== canonical.currentContent ||
+      chapter.title !== canonical.title
+    ) {
+      replacedIds.set(chapter.id, canonical.id);
+      return canonical;
+    }
+    return chapter;
+  });
 
   const imported = INITIAL_LEDGER_CHAPTER_DRAFTS.filter(
-    (chapter) => !existingSourceIds.has(chapter.sourceIdentifier || '')
+    (chapter) => !matchedCanonicalNumbers.has(String(chapter.chapterNumber))
   );
 
-  const chapters = [...imported, ...existing];
+  const chapters = [...imported, ...synchronizedExisting];
   const firstCanonical = chapters.find((chapter) => chapter.provenance === 'ledger_authoritative');
 
-  const previousActive = state.chapters.find((chapter) => chapter.id === state.activeChapterId);
+  const mappedActiveId = state.activeChapterId
+    ? replacedIds.get(state.activeChapterId) || state.activeChapterId
+    : undefined;
+  const previousActive = chapters.find((chapter) => chapter.id === mappedActiveId);
   const shouldSelectCanonical =
     !previousActive ||
     previousActive.id === 'chap_dxd_01' ||
@@ -102,7 +107,7 @@ export function importLedgerChapterSnapshot(state: WorkspaceState): WorkspaceSta
     version: '1.1.0',
     lastSavedAt: Date.now(),
     chapters,
-    activeChapterId: shouldSelectCanonical ? firstCanonical?.id : state.activeChapterId,
+    activeChapterId: shouldSelectCanonical ? firstCanonical?.id : mappedActiveId,
     ledgerConnection: {
       ...state.ledgerConnection,
       status: 'unconnected_standalone',

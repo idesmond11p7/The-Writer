@@ -16,9 +16,13 @@ import {
   Check,
   Flame,
   Zap,
+  Compass,
+  GraduationCap,
 } from 'lucide-react';
 import WraytracingSceneTest from '@/components/WraytracingSceneTest';
 import ResearchHandoffLab from '@/components/ResearchHandoffLab';
+import Topic3ArchitectureLab from '@/components/Topic3ArchitectureLab';
+import TrainProseLab from '@/components/TrainProseLab';
 
 interface Experiment01ShowcaseProps {
   onSelectTechniquePack?: (packId: string) => void;
@@ -702,8 +706,8 @@ export default function Experiment01Showcase({
   onSendPassageToWorkbench,
 }: Experiment01ShowcaseProps) {
   const [experimentMode, setExperimentMode] = useState<
-    'handoff_meltdown' | 'wraytracing_tanker' | 'exp01_12packs'
-  >('handoff_meltdown');
+    'train_prose_001' | 'topic3_architecture' | 'handoff_meltdown' | 'wraytracing_tanker' | 'exp01_12packs'
+  >('train_prose_001');
   const [activeTab, setActiveTab] = useState<TabMode>('all');
   const [showXRayAnnotations, setShowXRayAnnotations] = useState<boolean>(false);
   const [copiedFullText, setCopiedFullText] = useState<boolean>(false);
@@ -732,9 +736,31 @@ export default function Experiment01Showcase({
         <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl border border-stone-800 bg-stone-950/90 font-mono text-xs">
           <div className="flex items-center gap-2 text-stone-400">
             <FlaskConical className="w-4 h-4 text-amber-400" />
-            <span>Controlled Writing Experiments:</span>
+            <span>Active Curriculum &amp; Experiments:</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setExperimentMode('train_prose_001')}
+              className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2 ${
+                experimentMode === 'train_prose_001'
+                  ? 'bg-amber-400 text-stone-950 font-bold shadow-md shadow-amber-500/20'
+                  : 'bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800'
+              }`}
+            >
+              <GraduationCap className="w-3.5 h-3.5" />
+              <span>TRAIN-PROSE-001 (Blocks 1–4 Verified)</span>
+            </button>
+            <button
+              onClick={() => setExperimentMode('topic3_architecture')}
+              className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2 ${
+                experimentMode === 'topic3_architecture'
+                  ? 'bg-sky-500 text-stone-950 font-semibold shadow-sm'
+                  : 'bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800'
+              }`}
+            >
+              <Compass className="w-3.5 h-3.5" />
+              <span>Topic 3B &amp; 3C: 3 Levels of Narration</span>
+            </button>
             <button
               onClick={() => setExperimentMode('handoff_meltdown')}
               className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2 ${
@@ -744,7 +770,7 @@ export default function Experiment01Showcase({
               }`}
             >
               <Zap className="w-3.5 h-3.5" />
-              <span>Handoff Milestone: AK-117 Meltdown (Non-Aura Melee)</span>
+              <span>Handoff: AK-117 Meltdown</span>
             </button>
             <button
               onClick={() => setExperimentMode('wraytracing_tanker')}
@@ -755,7 +781,7 @@ export default function Experiment01Showcase({
               }`}
             >
               <Flame className="w-3.5 h-3.5" />
-              <span>W-Ray Tracing: 50ft Tanker Shot (GPU Rewrite)</span>
+              <span>W-Ray Tracing: Tanker Shot</span>
             </button>
             <button
               onClick={() => setExperimentMode('exp01_12packs')}
@@ -766,12 +792,16 @@ export default function Experiment01Showcase({
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>Experiment 01: All 12 Packs Under Load (2,200w)</span>
+              <span>Experiment 01: All 12 Packs</span>
             </button>
           </div>
         </div>
 
-        {experimentMode === 'handoff_meltdown' ? (
+        {experimentMode === 'train_prose_001' ? (
+          <TrainProseLab />
+        ) : experimentMode === 'topic3_architecture' ? (
+          <Topic3ArchitectureLab />
+        ) : experimentMode === 'handoff_meltdown' ? (
           <ResearchHandoffLab />
         ) : experimentMode === 'wraytracing_tanker' ? (
           <WraytracingSceneTest

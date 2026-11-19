@@ -42,6 +42,7 @@ import {
   FlaskConical,
   ChevronDown,
   ChevronUp,
+  Sun,
 } from 'lucide-react';
 
 import InvestigationHub from '@/components/InvestigationHub';
@@ -53,8 +54,12 @@ import EvaluationStudio from '@/components/EvaluationStudio';
 import AIUsageMetrics from '@/components/AIUsageMetrics';
 import LedgerBoundaryModal from '@/components/LedgerBoundaryModal';
 import Experiment01Showcase from '@/components/Experiment01Showcase';
+import Chapter9DirectiveStudio from '@/components/Chapter9DirectiveStudio';
+import Chapter5Studio from '@/components/Chapter5Studio';
 
 type SectionId =
+  | 'chapter5'
+  | 'chapter9'
   | 'experiment01'
   | 'overview'
   | 'investigation'
@@ -74,10 +79,22 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   {
+    id: 'chapter5',
+    label: 'Ch. 5 Soma Revision',
+    icon: Sun,
+    description: 'Soma Canon, W-Raytracing & Scribble Hub Copy Suite',
+  },
+  {
+    id: 'chapter9',
+    label: 'Ch. 9 Master Directive',
+    icon: BookOpen,
+    description: 'Locked 10-Event Architecture, Source Gate & Constraints',
+  },
+  {
     id: 'experiment01',
-    label: 'Experiment 01: 12 Packs',
+    label: 'TRAIN-PROSE & Labs',
     icon: FlaskConical,
-    description: '2,200-word literary snippet, 12-pack map, evaluation & audit',
+    description: 'Blocks 1–4 Verified, Topic 3 Labs & 12-Pack Showcase',
   },
   {
     id: 'overview',
@@ -135,7 +152,7 @@ export default function WriterAppShell() {
     getWorkspaceSnapshot,
     getServerWorkspaceSnapshot
   );
-  const [activeSection, setActiveSection] = useState<SectionId>('experiment01');
+  const [activeSection, setActiveSection] = useState<SectionId>('chapter5');
   const [isLedgerModalOpen, setIsLedgerModalOpen] = useState<boolean>(false);
   const [isPinTrayExpanded, setIsPinTrayExpanded] = useState<boolean>(false);
 
@@ -633,6 +650,9 @@ export default function WriterAppShell() {
 
         {/* Dynamic Section Viewport */}
         <div className="flex-1 overflow-hidden flex flex-col">
+          {activeSection === 'chapter5' && <Chapter5Studio />}
+          {activeSection === 'chapter9' && <Chapter9DirectiveStudio />}
+
           {activeSection === 'experiment01' && (
             <Experiment01Showcase
               onSelectTechniquePack={(packId) => handleNavigateToTechnique(packId)}
@@ -813,11 +833,25 @@ function OverviewSection({
           </div>
           <div className="flex flex-wrap items-center gap-2.5">
             <button
+              onClick={() => onNavigate('chapter5')}
+              className="px-3.5 py-2 bg-emerald-950/60 hover:bg-emerald-900/60 border border-emerald-500/50 text-emerald-200 font-semibold rounded-lg text-xs font-mono transition-colors flex items-center gap-2 shadow-lg shadow-emerald-500/10"
+            >
+              <Sun className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Ch. 5 Soma Revision</span>
+            </button>
+            <button
+              onClick={() => onNavigate('chapter9')}
+              className="px-3.5 py-2 bg-purple-950/60 hover:bg-purple-900/60 border border-purple-500/50 text-purple-200 font-semibold rounded-lg text-xs font-mono transition-colors flex items-center gap-2 shadow-lg shadow-purple-500/10"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-purple-400" />
+              <span>Ch. 9 Master Directive</span>
+            </button>
+            <button
               onClick={() => onNavigate('experiment01')}
               className="px-3.5 py-2 bg-amber-950/60 hover:bg-amber-900/60 border border-amber-500/50 text-amber-200 font-semibold rounded-lg text-xs font-mono transition-colors flex items-center gap-2"
             >
               <FlaskConical className="w-3.5 h-3.5 text-amber-400" />
-              <span>View Experiment 01 (12 Packs Under Load)</span>
+              <span>TRAIN-PROSE-001 &amp; Controlled Labs</span>
             </button>
             <button
               onClick={() => onNavigate('investigation')}
